@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://east-woo.github.io/sitemap-index.xml
+Host: https://east-woo.github.io
