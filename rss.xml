@@ -1,171 +1,142 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 12 May 2023 01:23:06 GMT</lastBuildDate><item><title><![CDATA[🤩 4. Other Tips]]></title><description><![CDATA[How to change the favicon? The favicon is located in . If you replace that image, the favicon will change. If you want to change the name of…]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie/other-tips/</link><guid isPermaLink="false">https://east-woo.github.io/gatsby-starter-hoodie/other-tips/</guid><pubDate>Tue, 04 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;How to change the favicon?&lt;/h2&gt;
-&lt;p&gt;The favicon is located in &lt;code class=&quot;language-text&quot;&gt;static/favicon.png&lt;/code&gt;. If you replace that image, the favicon will change.&lt;/p&gt;
-&lt;p&gt;If you want to change the name of the favicon, change the &lt;code class=&quot;language-text&quot;&gt;icon&lt;/code&gt; property of &lt;code class=&quot;language-text&quot;&gt;gatsby-plugin-manifest&lt;/code&gt; in &lt;code class=&quot;language-text&quot;&gt;gatsby-config.js&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;Utterance is not working properly.&lt;/h2&gt;
-&lt;p&gt;In the http environment, utterance may not work properly. Host your blog with https.&lt;/p&gt;
-&lt;h2&gt;How to set OG Image?&lt;/h2&gt;
-&lt;p&gt;Replace the &lt;code class=&quot;language-text&quot;&gt;og-image.png&lt;/code&gt; file in the &lt;code class=&quot;language-text&quot;&gt;/static&lt;/code&gt; directory with your own image file.&lt;/p&gt;
-&lt;h2&gt;Do you have another question?&lt;/h2&gt;
-&lt;p&gt;Please comment on this article or &lt;a href=&quot;https://github.com/devHudi/gatsby-starter-hoodie/issues&quot;&gt;open an issue&lt;/a&gt; in the gatsby-starter-hoodie repository. Your participation advances gatsby-starter-hoodie. Thank you 😎.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[🤔 3. Writing Guide]]></title><description><![CDATA[1. Add a post You can add posts by creating a new markdown document in the  path. 1-1. Post file structure There are two ways to add a new…]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie/writing-guide/</link><guid isPermaLink="false">https://east-woo.github.io/gatsby-starter-hoodie/writing-guide/</guid><pubDate>Mon, 03 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. Add a post&lt;/h2&gt;
-&lt;p&gt;You can add posts by creating a new markdown document in the &lt;code class=&quot;language-text&quot;&gt;contents/post&lt;/code&gt; path.&lt;/p&gt;
-&lt;h3&gt;1-1. Post file structure&lt;/h3&gt;
-&lt;p&gt;There are two ways to add a new document. The first is to create a markdown file for a single document without a directory. If you are writing about JavaScript, you can create a &lt;code class=&quot;language-text&quot;&gt;about-javascript.md&lt;/code&gt; file in the &lt;code class=&quot;language-text&quot;&gt;contents/posts&lt;/code&gt; directory.&lt;/p&gt;
-&lt;p&gt;The second is to create a directory and create an &lt;code class=&quot;language-text&quot;&gt;index.md&lt;/code&gt; file in it. This method is useful when the document contains several additional files such as picture files.&lt;/p&gt;
-&lt;p&gt;Each file name or directory name becomes a unique address of the document and can be accessed as follows. &lt;code class=&quot;language-text&quot;&gt;https://siteURL/about-javascript&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;1-2. Frontmatter&lt;/h3&gt;
-&lt;p&gt;The Markdown document you create contains the document&apos;s metadata called frontmatter.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;---
-title: &quot;🤔 3. Writing Guide&quot;
-description: &quot;How to write and add a post?&quot;
-date: 2021-05-03
-update: 2021-05-03
-tags:
-  - hoodie
-  - writing-guide
-series: &quot;Getting started your blog with gatsby-starter-hoodie&quot;
----&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Above is the frontmatter of the document you are currently reading. Among them, title and date are required. It is recommended to enclose the string with spaces in quotation marks.&lt;/p&gt;
-&lt;h3&gt;1-3. Writing markdown&lt;/h3&gt;
-&lt;p&gt;If you have written a Frontmatter, you can write your markdown document under it. gatsby-starter-hoodie supports most Markdown syntax. To learn more about Markdown syntax, see the &lt;a href=&quot;https://guides.github.com/features/mastering-markdown/&quot;&gt;Mastering Markdown&lt;/a&gt; documentation on GitHub.&lt;/p&gt;
-&lt;h2&gt;2. Syntax Highlighting &amp;#x26; Katex&lt;/h2&gt;
-&lt;h3&gt;2-1. Syntax Highlighting&lt;/h3&gt;
-&lt;p&gt;Syntax highlighting based on Prism.JS is supported.&lt;/p&gt;
-&lt;h4&gt;Examples&lt;/h4&gt;
-&lt;p&gt;Javascript&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Python&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;It supports a wider variety of other languages. Check it out on the &lt;a href=&quot;https://prismjs.com/&quot;&gt;Prism.js website&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;2-2. Katex&lt;/h3&gt;
-&lt;p&gt;It supports Katex syntax, you can easily express complex formulas.&lt;/p&gt;
-&lt;h4&gt;Inline mode&lt;/h4&gt;
-&lt;p&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;E = m c^{2}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05764em;&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;&gt;&lt;span style=&quot;top:-3.063em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h4&gt;Block mode&lt;/h4&gt;
-&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mo&gt;∫&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;∞&lt;/mi&gt;&lt;/msubsup&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\int_{0}^{\infty} f(x) dx&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:2.326242em;vertical-align:-0.9119499999999999em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mop op-symbol large-op&quot; style=&quot;margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;&quot;&gt;∫&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:1.414292em;&quot;&gt;&lt;span style=&quot;top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.8129000000000004em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;∞&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.9119499999999999em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.16666666666666666em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.10764em;&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;mopen&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mclose&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;h2&gt;3. Add images to a post&lt;/h2&gt;
-&lt;p&gt;You can easily embed images using relative paths. It is easy to manage documents containing images by creating a directory.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 10 Jan 2024 02:03:34 GMT</lastBuildDate><item><title><![CDATA[🤔 교착상태 vs 기아상태 vs 경합상태]]></title><description><![CDATA[1. 교착상태(Dead Lock…]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie/deadlock/</link><guid isPermaLink="false">https://east-woo.github.io/gatsby-starter-hoodie/deadlock/</guid><pubDate>Tue, 09 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 교착상태(Dead Lock)란?&lt;/h2&gt;
 &lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
     &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/aaf92/sample-image.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 61.1764705882353%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQCA//EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAGTVASRyE//xAAbEAACAwADAAAAAAAAAAAAAAABAgADBBEiI//aAAgBAQABBQIFOW7ETHWtk0D2awqf/8QAFREBAQAAAAAAAAAAAAAAAAAAEEH/2gAIAQMBAT8Bh//EABcRAAMBAAAAAAAAAAAAAAAAAAABESH/2gAIAQIBAT8Bawh//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAEhEQIQ/9oACAEBAAY/AlpNa8fXdaeIkMh//8QAGhABAAIDAQAAAAAAAAAAAAAAAQARITFRQf/aAAgBAQABPyEV1DoR9QwMeNhKDbo0Qg+hmvYtBQ6T/9oADAMBAAIAAwAAABBrH//EABcRAQADAAAAAAAAAAAAAAAAAAABESH/2gAIAQMBAT8QnCn/xAAXEQEAAwAAAAAAAAAAAAAAAAAAESFB/9oACAECAQE/EIC+v//EABoQAQEAAwEBAAAAAAAAAAAAAAERACExUUH/2gAIAQEAAT8QJ4pTaH7iSdBk0/bPfMk7cqENGF6ex6O893iIKtxrGP0g1c//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;Sample Image Caption&apos; title=&apos;Sample Image Caption&apos; src=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/a22ce/sample-image.jpg&apos; srcset=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/0b705/sample-image.jpg 170w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/31389/sample-image.jpg 340w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/a22ce/sample-image.jpg 680w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/29373/sample-image.jpg 1020w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/232dc/sample-image.jpg 1360w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/aaf92/sample-image.jpg 1920w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/1c05c5694c4ca7750b99791cf01224a9/80132/img.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 70.58823529411764%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAACNklEQVQ4y41U247aQAzN/39MX/qIELRCQLcEVlxDFgKEe8ISck+4nR4HskJ0t6qlSWbssefYxzPKKAwwTiIYacJ/jLcohE7dKI4w9D1onovabIqSPkRjvcSA65s95N6AfnG21+BoUK/M4hip58Far+Hu98DlApEkDBEHARKOeqWCcrGIYb8P/3DIbOckAc5nOLsdIu4B4xRXSygtfvrdLtqdDkbjMd5GI9i2jYgbrrjJ8XSCT6czA4iceais3wnAmEygtloY9nooLBdQJkzRcxy0222YpgmH8yiKMsfr9ZqNR3lcxzx0R4RdBjM0Db+JnAGjjw0Xnuy67l+OeeBc9zgXAOnxmM1fAv+GMJcjDZZlfYrmK5SCMCTSLKCQMiE7Uly12USpVEKj0UCPKSRS9C+QikhZyuUyCoUCqrUa+q+vqLqHe0Cmqut6FqxPJqfTKdI0/WdAyWY2m6FFQoTI/XaLOttMMQgzl4DMRQ81fa7Z4zoXqeHpzn6WshGGH61wYnvspRefgnw2cpQeeziXX/4TKXltwjDE/4gEE4QHdsaVJVJ505Sp9BKZ7Q0GWG02WK5W2Fo2PKYv7ZBwOHSYL5eZo2Qiuj0DmfM5uqy5xvqbxgTfdQ2KKaQwVZ3MDtjcc8O491CKE5EmRNFRVZTJpkZ7yrRELz5kDuZ4hC6JcRYLVKwNlA4L2eAlLyzm+NZp4yeVTbno1Kl8AJp8OKqHfWavvNt8APxML3ax1b0DfthbvPBfpu4PgxgpXiumAZcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img.png&apos; title=&apos;img.png&apos; src=&apos;/static/1c05c5694c4ca7750b99791cf01224a9/ca1dc/img.png&apos; srcset=&apos;/static/1c05c5694c4ca7750b99791cf01224a9/e7570/img.png 170w,
+/static/1c05c5694c4ca7750b99791cf01224a9/f46e7/img.png 340w,
+/static/1c05c5694c4ca7750b99791cf01224a9/ca1dc/img.png 680w,
+/static/1c05c5694c4ca7750b99791cf01224a9/02d09/img.png 1020w,
+/static/1c05c5694c4ca7750b99791cf01224a9/80132/img.png 1294w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
   &lt;/a&gt;
     &lt;/span&gt;
-    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;Sample Image Caption&lt;/figcaption&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img.png&lt;/figcaption&gt;
   &lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;Images are loaded with Lazy Loading, so you can secure fast document loading speed.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠ The extension of the file must be set to lowercase.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;두 개 이상의 작업이 서로 상대방의 작업이 끝나기만을 기다리고 있기 때문에 결과적으로 아무것도 완료되지 못하는 상태&lt;/li&gt;
+&lt;li&gt;둘 이상의 프로세스가 각각의 프로세스가 점유 하고 있는 자원을 서로 기다릴때 무한대기에 빠지는 상황&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;4. Tagging&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; margin-bottom: 16px;&apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/82ce4bec7f5360eef32a473171b181af/6031b/tag-example.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 18.823529411764707%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB36AH/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFRABAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQEAAT8hj//aAAwDAQACAAMAAAAQAA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQABPxABf//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;tag example&apos; title=&apos;tag example&apos; src=&apos;/static/82ce4bec7f5360eef32a473171b181af/a22ce/tag-example.jpg&apos; srcset=&apos;/static/82ce4bec7f5360eef32a473171b181af/0b705/tag-example.jpg 170w,
-/static/82ce4bec7f5360eef32a473171b181af/31389/tag-example.jpg 340w,
-/static/82ce4bec7f5360eef32a473171b181af/a22ce/tag-example.jpg 680w,
-/static/82ce4bec7f5360eef32a473171b181af/6031b/tag-example.jpg 737w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;You can classify and search documents by tag set in Frontmatter. All tags you set can be viewed and searched in &lt;code class=&quot;language-text&quot;&gt;https://siteUrl/tags&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;5. Series&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 677px; margin-bottom: 16px;&apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 17.058823529411764%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdqwSD//xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQABBQIv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFRABAQAAAAAAAAAAAAAAAAAAARD/2gAIAQEAAT8hF//aAAwDAQACAAMAAAAQ8A//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAgMAAAAAAAAAAAAAAAABACEQETH/2gAIAQEAAT8QJLNzlGP/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;series example&apos; title=&apos;series example&apos; src=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg&apos; srcset=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/0b705/series-example.jpg 170w,
-/static/1ea4e56966cb5fb6e110d32124fd883c/31389/series-example.jpg 340w,
-/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg 677w&apos; sizes=&apos;(max-width: 677px) 100vw, 677px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;You can publish multiple related documents in a series. The series set in Frontmatter is grouped together and shown at the top of the document. This can be useful for serialized documents with an order. Series documents are displayed in ascending order of creation date.&lt;/p&gt;
-&lt;p&gt;The current document is also set in a series called &lt;code class=&quot;language-text&quot;&gt;Getting started your blog with gatsby-starter-hoodie&lt;/code&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[🤩 4. 그 외 팁들]]></title><description><![CDATA[파비콘은 어떻게 변경하나요?  에 파비콘 파일이 위치해 있습니다. 이미지 파일을 대체하면 파비콘을 변경할 수 있습니다. 만약 파비콘 파일의 이름을 변경하고 싶다면,  파일의  에서  속성을 변경하셔야합니다. Utterance…]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie/other-tips-kr/</link><guid isPermaLink="false">https://east-woo.github.io/gatsby-starter-hoodie/other-tips-kr/</guid><pubDate>Sun, 04 Apr 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;파비콘은 어떻게 변경하나요?&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;static/favicon.png&lt;/code&gt; 에 파비콘 파일이 위치해 있습니다. 이미지 파일을 대체하면 파비콘을 변경할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;만약 파비콘 파일의 이름을 변경하고 싶다면, &lt;code class=&quot;language-text&quot;&gt;gatsby-config.js&lt;/code&gt; 파일의 &lt;code class=&quot;language-text&quot;&gt;gatsby-plugin-manifest&lt;/code&gt; 에서 &lt;code class=&quot;language-text&quot;&gt;icon&lt;/code&gt; 속성을 변경하셔야합니다.&lt;/p&gt;
-&lt;h2&gt;Utterance 가 제대로 작동하지 않아요.&lt;/h2&gt;
-&lt;p&gt;http 환경에서는 Utterance 가 제대로 작동하지 않을 수 있습니다. 여러분의 웹사이트를 https 환경으로 제공하세요.&lt;/p&gt;
-&lt;h2&gt;OG Image 를 설정하고 싶어요.&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/static&lt;/code&gt; 디렉토리의 &lt;code class=&quot;language-text&quot;&gt;og-image.png&lt;/code&gt; 파일을 여러분이 원하는 이미지 파일로 대체하세요.&lt;/p&gt;
-&lt;h2&gt;다른 질문이 있으신가요?&lt;/h2&gt;
-&lt;p&gt;이 문서에 댓글을 달거나 gatsby-starter-hoodie 레포지토리에 &lt;a href=&quot;https://github.com/devHudi/gatsby-starter-hoodie/issues&quot;&gt;이슈를 열어주세요&lt;/a&gt;. 여러분의 참여가 gatsby-starter-hoodie 를 더욱 발전시킵니다. 감사해요 😎.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[🤔 3. 작성 가이드]]></title><description><![CDATA[1. 포스트 추가하기  경로에 새로운 마크다운 파일을 생성하여 여러분의 글을 추가할 수 있습니다. 1-…]]></description><link>https://east-woo.github.io/gatsby-starter-hoodie/writing-guide-kr/</link><guid isPermaLink="false">https://east-woo.github.io/gatsby-starter-hoodie/writing-guide-kr/</guid><pubDate>Sat, 03 Apr 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 포스트 추가하기&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;contents/post&lt;/code&gt; 경로에 새로운 마크다운 파일을 생성하여 여러분의 글을 추가할 수 있습니다.&lt;/p&gt;
-&lt;h3&gt;1-1. 포스트 파일 구조&lt;/h3&gt;
-&lt;p&gt;새로운 문서를 추가하는 방법에는 두가지가 있습니다. 첫번째는 디렉토리 없이 문서를 생성하는 방법입니다. 만약 여러분이 Javascript 에 관한 문서를 생성한다면, &lt;code class=&quot;language-text&quot;&gt;about-javascript.md&lt;/code&gt; 파일을 &lt;code class=&quot;language-text&quot;&gt;contents/posts&lt;/code&gt; 디렉토리에 추가할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;두번째 방법은 먼저 디렉토리를 생성한 뒤, 디렉토리 안에 &lt;code class=&quot;language-text&quot;&gt;index.md&lt;/code&gt; 파일을 추가하는 것 입니다. 이 방법은 문서 내에 여러 이미지 파일 등 부수적인 파일 여러개가 포함되었을 때 유용합니다.&lt;/p&gt;
-&lt;p&gt;첫번째 방법으로 생성한 파일명이나, 두번째 방법으로 생성한 디렉토리 이름은 웹사이트에서 고유의 주소를 갖습니다. &lt;code class=&quot;language-text&quot;&gt;https://siteURL/about-javascript&lt;/code&gt; 와 같이요.&lt;/p&gt;
-&lt;h3&gt;1-2. Frontmatter&lt;/h3&gt;
-&lt;p&gt;마크다운은 문서의 메타데이터인 Frontmatter 라 불리는 정보를 가지고 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;---
-title: &quot;🤔 3. 작성 가이드&quot;
-description: &quot;어떻게 글을 작성하고 추가할까요?&quot;
-date: 2021-04-03
-update: 2021-04-03
-tags:
-  - hoodie
-  - writing-guide
-series: &quot;gatsby-starter-hoodie 로 블로그 시작하기&quot;
----&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위는 지금 여러분이 읽고 있는 문서의 Frontmatter 입니다. &lt;code class=&quot;language-text&quot;&gt;title&lt;/code&gt; 과 &lt;code class=&quot;language-text&quot;&gt;date&lt;/code&gt; 는 필수 값입니다. 띄어쓰기를 포함된 문자열을 입력할 때에는 따옴표로 감싸는 것을 추천합니다.&lt;/p&gt;
-&lt;h3&gt;1-3. 마크다운 작성하기&lt;/h3&gt;
-&lt;p&gt;만약 Frontmatter 까지 작성했다면, 여러분은 그 아래에 마크다운 문서를 작성하면 됩니다. gatsby-starter-hoodie 는 대부분의 마크다운 문법을 지원합니다. 마크다운 작성 방법을 알고 싶다면, Github 의 &lt;a href=&quot;https://guides.github.com/features/mastering-markdown/&quot;&gt;Mastering Markdown&lt;/a&gt; 문서를 참고하세요.&lt;/p&gt;
-&lt;h2&gt;2. 코드 하이라이팅 &amp;#x26; Katex&lt;/h2&gt;
-&lt;h3&gt;2-1. 코드 하이라이팅&lt;/h3&gt;
-&lt;p&gt;Prism.JS 에 기반한 코드 하이라이팅이 제공됩니다.&lt;/p&gt;
-&lt;h4&gt;예시&lt;/h4&gt;
-&lt;p&gt;Javascript&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Python&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;그 외 더 많은 언어를 제공합니다. 제공되는 언어를 확인하고 싶다면, &lt;a href=&quot;https://prismjs.com/&quot;&gt;Prism.js 웹사이트&lt;/a&gt; 를 참고하세요.&lt;/p&gt;
-&lt;h3&gt;2-2. Katex&lt;/h3&gt;
-&lt;p&gt;Katex 문법을 지원하여 복잡한 수식도 쉽게 표현할 수 있습니다.&lt;/p&gt;
-&lt;h4&gt;인라인 모드&lt;/h4&gt;
-&lt;p&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;E = m c^{2}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05764em;&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;&gt;&lt;span style=&quot;top:-3.063em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h4&gt;블럭 모드&lt;/h4&gt;
-&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mo&gt;∫&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;∞&lt;/mi&gt;&lt;/msubsup&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\int_{0}^{\infty} f(x) dx&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:2.326242em;vertical-align:-0.9119499999999999em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mop op-symbol large-op&quot; style=&quot;margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;&quot;&gt;∫&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:1.414292em;&quot;&gt;&lt;span style=&quot;top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.8129000000000004em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;∞&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.9119499999999999em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.16666666666666666em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.10764em;&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;mopen&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mclose&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;h2&gt;3. 글에 이미지 추가하기&lt;/h2&gt;
-&lt;p&gt;상대경로를 이용하여 쉽게 이미지를 추가할 수 있습니다. 디렉토리를 생성하고 그 안에 &lt;code class=&quot;language-text&quot;&gt;index.md&lt;/code&gt; 를 추가하여, 글을 추가하는 방법으로 작성해야 이미지 관리가 쉽습니다.&lt;/p&gt;
+&lt;h3&gt;1.1 교착상태 발생 경우&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Process1 이 Resource1 을 점유하고 있다.&lt;/li&gt;
+&lt;li&gt;Process2 가 Resource2 를 점유하고 있다.&lt;/li&gt;
+&lt;li&gt;여기까지는 괜찮다.&lt;/li&gt;
+&lt;li&gt;Process1 이 Resource2의 자원을 사용하기 위해 기다린다.&lt;/li&gt;
+&lt;li&gt;Process2 가 Resource1의 자원을 사용하기 위해 기다린다.&lt;/li&gt;
+&lt;li&gt;이렇게 자원 해제가 안되어있고 무한정 기다리고 있는 상태이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.2 교착상태 발생 조건&lt;/h3&gt;
 &lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
     &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/aaf92/sample-image.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 61.1764705882353%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQCA//EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAGTVASRyE//xAAbEAACAwADAAAAAAAAAAAAAAABAgADBBEiI//aAAgBAQABBQIFOW7ETHWtk0D2awqf/8QAFREBAQAAAAAAAAAAAAAAAAAAEEH/2gAIAQMBAT8Bh//EABcRAAMBAAAAAAAAAAAAAAAAAAABESH/2gAIAQIBAT8Bawh//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAEhEQIQ/9oACAEBAAY/AlpNa8fXdaeIkMh//8QAGhABAAIDAQAAAAAAAAAAAAAAAQARITFRQf/aAAgBAQABPyEV1DoR9QwMeNhKDbo0Qg+hmvYtBQ6T/9oADAMBAAIAAwAAABBrH//EABcRAQADAAAAAAAAAAAAAAAAAAABESH/2gAIAQMBAT8QnCn/xAAXEQEAAwAAAAAAAAAAAAAAAAAAESFB/9oACAECAQE/EIC+v//EABoQAQEAAwEBAAAAAAAAAAAAAAERACExUUH/2gAIAQEAAT8QJ4pTaH7iSdBk0/bPfMk7cqENGF6ex6O893iIKtxrGP0g1c//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;샘플 이미지 캡션&apos; title=&apos;샘플 이미지 캡션&apos; src=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/a22ce/sample-image.jpg&apos; srcset=&apos;/static/69b244095d8c72158c9dd2d4ca59a7b1/0b705/sample-image.jpg 170w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/31389/sample-image.jpg 340w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/a22ce/sample-image.jpg 680w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/29373/sample-image.jpg 1020w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/232dc/sample-image.jpg 1360w,
-/static/69b244095d8c72158c9dd2d4ca59a7b1/aaf92/sample-image.jpg 1920w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/b8d403bf79a768e4008093bce7e579b8/7d136/img_1.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 58.82352941176471%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB/ElEQVQoz32T627aQBBG/f6v06YpjRopjdIfrWhCQwjYEAzGGMfY+I69vpyuzSXQRl1p5PXom/k0u2cV9quua/5eTa5JlyKUEbX7qqre1R2WsivaJbIsI0kS0jRF5PlOkVuQdCGWUbzudVviOG61QogT87pp+OZg2zaapjEej5lOp7jrNfpzB/3pA4vRJ176FxiGga7rDIej9rvZ+GfTKHLb/FIWQjqnBIGP565Zy2ZJuiVxB0TmV2Lrmsjp4wchruvieS6+v6EQOXVVcuij2L7AjkAzNtx1R4zNEC/MTk6o2o3dBG9n1WjURUBPXWKsMyy/4jUoUJ4XW7qaz+Ms5WmR8WjkLDdFW3wYoz74H4+nxvQK7l8i+vOU33rMwzRmtMxQBvOYzt2Az7d9Lm4euLmfYZ01PLY7GjT7xvT654Qv35+4vH1sY7hIUCa2YOyAahXSLWFklTjhDo1KVlctKkUbpxf4GpRtXW8a8mzK8VcVEztHyURJkpUE0ZbZwkI3LDx5c0LssakDicyDjJ4EMmhTDSqut5H6FYOhhuP6bEVN00s5BbQqS+IoxHEcTNNs8VF7H1lNOljjS+zptxat+XzeapI4OsX7X7BXKxtVVVsGPc8jzwXe8gfe7ApvfkWw+kVRVFjW8shqY3AG9v+e3v6pQKrtos7fVZzW/gFWa5XEPmkQYwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_1.png&apos; title=&apos;img_1.png&apos; src=&apos;/static/b8d403bf79a768e4008093bce7e579b8/ca1dc/img_1.png&apos; srcset=&apos;/static/b8d403bf79a768e4008093bce7e579b8/e7570/img_1.png 170w,
+/static/b8d403bf79a768e4008093bce7e579b8/f46e7/img_1.png 340w,
+/static/b8d403bf79a768e4008093bce7e579b8/ca1dc/img_1.png 680w,
+/static/b8d403bf79a768e4008093bce7e579b8/02d09/img_1.png 1020w,
+/static/b8d403bf79a768e4008093bce7e579b8/9d567/img_1.png 1360w,
+/static/b8d403bf79a768e4008093bce7e579b8/7d136/img_1.png 1445w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
   &lt;/a&gt;
     &lt;/span&gt;
-    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;샘플 이미지 캡션&lt;/figcaption&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_1.png&lt;/figcaption&gt;
   &lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;이미지는 Lazy Loading 으로 로드되어, 빠른 초기 문서 로딩 속도를 확보할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;상호 배제 :&lt;/strong&gt; 하나의 프로세스가 자원을 사용중일 때 다른 프로세스는 그를 사용할 수 없다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;점유 대기 :&lt;/strong&gt; 최소 하나의 자원을 점유하고 있으면서 다른 프로세스가 사용중인 자원을 추가로 점유하기 위해 대기하는 프로세스가 존재한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;비선점 :&lt;/strong&gt; 다른 프로세스가 자원을 사용중인 경우 그 사용이 끝날 때 까지 강제로 뺏을 수 없다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;순환 대기 :&lt;/strong&gt; 프로세스의 집합에서 순환형태로 자원을 대기하고 있어야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.3 교착상태 해결 방법&lt;/h3&gt;
+&lt;h4&gt;&lt;strong&gt;1.3.1 교착 상태 예방 및 회피&lt;/strong&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠ 이미지의 모든 확장자는 소문자여야합니다.&lt;/p&gt;
+&lt;p&gt;💡 교착 상태가 되지 않도록 하기 위해 교착 상태를 예방하거나 회피하는 프로토콜을 이용하는 방법이다.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;4. 태그&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; margin-bottom: 16px;&apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/82ce4bec7f5360eef32a473171b181af/6031b/tag-example.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 18.823529411764707%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB36AH/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFRABAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQEAAT8hj//aAAwDAQACAAMAAAAQAA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQABPxABf//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;tag example&apos; title=&apos;tag example&apos; src=&apos;/static/82ce4bec7f5360eef32a473171b181af/a22ce/tag-example.jpg&apos; srcset=&apos;/static/82ce4bec7f5360eef32a473171b181af/0b705/tag-example.jpg 170w,
-/static/82ce4bec7f5360eef32a473171b181af/31389/tag-example.jpg 340w,
-/static/82ce4bec7f5360eef32a473171b181af/a22ce/tag-example.jpg 680w,
-/static/82ce4bec7f5360eef32a473171b181af/6031b/tag-example.jpg 737w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+&lt;p&gt;&lt;strong&gt;예방&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;교착상태의 발생 조건 중 하나를 제거하면서 예방.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;상호 배제 부정 :&lt;/strong&gt; 여러 프로세스가 공유 자원 사용&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;점유 대기 부정 :&lt;/strong&gt; 프로세스 실행 전 모든 자원 할당&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;비선점 부정 :&lt;/strong&gt; 점유중인 자원을 다른 프로세스가 요구하는 경우 그를 반납&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;순환 대기 부정 :&lt;/strong&gt; 자원에 고유 번호를 할당한 후 순서대로 자원 요구&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;회피&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;은행원 알고리즘&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스가 자원을 요구할 때 시스템은 자원을 할당한 후에도 안정 상태로 남아있게 되는지 미리 검사하여 교착 상태를 회피한다. 안정 상태인 경우만 자원을 할당하고 그렇지 않은 경우 다른 프로세스들의 자원 해지시 까지 대기한다.&lt;/li&gt;
+&lt;li&gt;은행에서 모든 고객의 요구가 충족되도록 현금을 할당하는 데서 유래한 기법으로 병렬 수행 프로세스 간의 교착 상태를 방지하기 위한 방법이다. 프로세스가 자원을 요구할 때 시스템이 자원을 할당한 후에도 안정한 상태인지 사전에 검사하여 교착 상태를 회피하는 기법이다. 은행원 알고리즘은 프로세스의 모든 요구를 유한한 시간 안에 할당하는 것을 보장한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong&gt;1.3.2 교착 상태 탐지(발견) 및 회복&lt;/strong&gt;&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;교착 상태가 발생했는지 점검하고 교착 상태에 있는 프로세스와 자원을 발견하고 교착 상태를 일으킨 프로세스를 종료하거나 프로세스에 할당된 자원을 선점하여 프로세스나 자원을 회복한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;교착 상태 탐지(발견)&lt;/strong&gt;에는 &lt;strong&gt;교착 상태 발견 알고리즘&lt;/strong&gt;과 &lt;strong&gt;자원 할당 그래프&lt;/strong&gt; 등을 사용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/cf7a2c50573534fc3af396f1286568df/a6c2c/img_2.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 108.8235294117647%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAACrElEQVQ4y31UaU8iQRDl/3/X/eR+UZEVDEuynGuEiAyn4KJDPAOCcniBGrnh7bzSngzMYJkO9lT361dVr8qFL5vP57JorVYLT09PcPLRGo06er3egl+Zy/phNpthNBrh8vISun6GwWAge2XT6VS+6bqOk5MSPj4+MB6PF0AXALvGq/F4HPlCHsmjJNKZtHHxxAQk84P4AXL5HI5SR9DSGiqVyieZ+cwOyDAJdpg8xMbPDZQMFrys7O7uDoXjAmJ/Y9jc2hQ/l4pOAK35eX19xfqPdWEViUaw7d7Gzc2N6b+/v8fa+hr0io5AIIBd766Rz8ZCngVwNv1Ev729lYPKSqXSQnGYu2g0au5zuZzkUeVXAM1KGX/ZbBZW44FQKCTMp7Op6VeMWaBgMCi/ZpUZOyVQPC7i6urKzAdfpBUKBSQSCZT/lSWCZX8ymYSW0iQSVtzVarYQ/BOEz+tDKpWy6a7T6SASjsCz48Gx8ajVz1Wv1xH4HRD/6ekpXM/Pz0jEE3C7d6Cf6TbARr2BPd8ePJ5fuL6+tvlr1RrCobDh94gKzBz6fD55wSmkWCxm6wprd/T7fbMBXMrB+DVNEzD17f39HZlM5luw5f9dVlEy6efn5+aBfD6Pt7c3k7U1d07LJmzS9nq9ImZKhKE+PDzYmCzbyuFANgTy+/2iP/au6lWlu3a7jW63K1KjAlQEjsPh5eUFtVoN+/v7CIfDsmcKlL/ZbKJcLqNYLIrEWHX14EpAthe1xbZj7/KC8pMdH+QZ5pdiVs3gCDgcDuUCi8OmJzDDUkZA5pfyYvW55+y0AS4nloVIG7POOnjVPKxWqxI2Jfb4+IiLi4vVDGXyfMmD4aumV4AMkewUe7LjA44MV0nDKisCswGYFhaLMptMJt8DOol1GZiyYbGWwWj/AWK2fHB8oa9vAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_2.png&apos; title=&apos;img_2.png&apos; src=&apos;/static/cf7a2c50573534fc3af396f1286568df/ca1dc/img_2.png&apos; srcset=&apos;/static/cf7a2c50573534fc3af396f1286568df/e7570/img_2.png 170w,
+/static/cf7a2c50573534fc3af396f1286568df/f46e7/img_2.png 340w,
+/static/cf7a2c50573534fc3af396f1286568df/ca1dc/img_2.png 680w,
+/static/cf7a2c50573534fc3af396f1286568df/a6c2c/img_2.png 822w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
   &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Frontmatter 의 태그를 통해 쉽게 문서를 분류하고 검색할 수 있습니다. 여러분의 모든 태그는 &lt;code class=&quot;language-text&quot;&gt;https://siteUrl/tags&lt;/code&gt; 경로에서 확인하고, 검색할 수 있습니다.&lt;/p&gt;
-&lt;h2&gt;5. 시리즈&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 677px; margin-bottom: 16px;&apos;&gt;
-      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
-    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 17.058823529411764%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdqwSD//xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQABBQIv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFRABAQAAAAAAAAAAAAAAAAAAARD/2gAIAQEAAT8hF//aAAwDAQACAAMAAAAQ8A//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAgMAAAAAAAAAAAAAAAABACEQETH/2gAIAQEAAT8QJLNzlGP/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;series example&apos; title=&apos;series example&apos; src=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg&apos; srcset=&apos;/static/1ea4e56966cb5fb6e110d32124fd883c/0b705/series-example.jpg 170w,
-/static/1ea4e56966cb5fb6e110d32124fd883c/31389/series-example.jpg 340w,
-/static/1ea4e56966cb5fb6e110d32124fd883c/d1584/series-example.jpg 677w&apos; sizes=&apos;(max-width: 677px) 100vw, 677px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;여러분이 연관된 여러개의 문서를 작성할 때 시리즈를 사용할 수 있습니다. Frontmatter 에 작성된 시리즈가 같은 문서끼리 묶여 문서 상단에 리스트로 표시됩니다. 시리즈는 일련의 순서가 있는 문서들을 작성할 때 유용하게 사용할 수 있습니다. 시리즈는 문서의 작성 날짜 순서대로 정렬됩니다.&lt;/p&gt;
-&lt;p&gt;현재 문서는 &lt;code class=&quot;language-text&quot;&gt;gatsby-starter-hoodie 로 블로그 시작하기&lt;/code&gt; 라는 시리즈로 설정되어 있습니다.&lt;/p&gt;</content:encoded></item></channel></rss>
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_2.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;교착 상태 회복&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;교착 상태 회복 기법에는 프로세스 종료, 자원 선점 방법이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;프로세스 종료 :&lt;/strong&gt; 교착 상태에 있는 프로세스를 종료하는 방법으로 교착 상태에 있는 모든 프로세스를 종료하는 방법과 프로세스들을 하나씩 종료하면서 교착 상태를 해결하는 방법이 있다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;자원 선점 :&lt;/strong&gt; 교착 상태의 프로세스가 점유하고 있는 자원을 선점해 다른 프로세스에 할당하여 해당 프로세스를 일시적으로 멈추는 방법이다. 우선순위가 낮은 프로세스, 수행된 정도가 적은 프로세스, 사용되는 자원이 적은 프로세스 등을 위주로 해당 프로세스의 자원을 선점한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong&gt;1.3.3 교착 상태 무시&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;대부분 교착 상태가 잘 발생하지 않기에 교착 상태 예방, 회피, 탐지, 복구는 비용이 많이 든다. 또 예방 또는 회피를 프로그래밍해서 넣으면 성능이 큰 영향을 미칠 수 있다. 때문에 교착 상태의 발생 확률이 비교적 낮으면 별 다른 조치를 취하지 않는다.&lt;/p&gt;
+&lt;h2&gt;2. 기아상태(Starvation)란?&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;특정 프로세스의 우선 순위가 낮아서 원하는 자원을 계속 할당받지 못하는 상태를 말함 &lt;br&gt;
+여러 프로세스가 자원을 점유 할때 특정 프로세스에게 자원이 아예 할당 안되는 경우&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2.1 기아상태 해결 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스 우선순위 수시 변경을 통해 각 프로세스 높은 우선순위를 가지도록 기회 부여&lt;/li&gt;
+&lt;li&gt;오래 기다린 프로세스의 우선순위 높이기&lt;/li&gt;
+&lt;li&gt;우선순위가 아닌 요청 순서대로 처리하는 요청큐 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 경합 조건란?&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;둘 이상의 입력 또는 조작의 타이밍이나 순서 등이 &lt;code class=&quot;language-text&quot;&gt;공유자원에 동시에 접근&lt;/code&gt;하여 결과값에 영향을 줄 수 있는 상태&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.1 경합 조건의 예시&lt;/h3&gt;
+&lt;p&gt;아들은 은행에 10000원의 잔고가 있었고, 현금 인출기를 통해 잔고 10000원을 출금하고 있다. 그 사이 엄마는 아들에게 용돈을 5000원 입금 해주었다. 그렇다면 잔고는 얼마일까?&lt;br&gt;
+아들은 10000원을 인출했기 때문에 잔고는 0원이 되고, 이후 엄마가 5000원을 입금해주신 덕분에 잔고는 5000원이 되리라 기대할 것이다.&lt;br&gt;
+하지만 경쟁상태일 때&lt;br&gt;
+동시에 출금과 입금이 이루어지는 경우&lt;br&gt;
+아들의 입장 : 현재잔고 10000원 – 10000원 출금 = 기대잔고 0원&lt;br&gt;
+엄마의 입장 : 현재잔고 10000원 – 5000원 입금 = 기대잔고 15000원&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;이처럼 경쟁 조건는 &lt;code class=&quot;language-text&quot;&gt;공유 데이터(잔고)에 최종값을 보장할 수 없는 상황&lt;/code&gt;을 말한다.&lt;/p&gt;
+&lt;p&gt;이 경쟁 조건로 생기는 영역이&lt;code class=&quot;language-text&quot;&gt;임계구역(Critical Section)&lt;/code&gt;이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;정의:&lt;/strong&gt; 경쟁 조건은 시스템의 동작이 스레드가 실행되도록 예약된 순서와 같은 이벤트의 상대적 타이밍에 따라 달라질 때 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;원인:&lt;/strong&gt; 여러 스레드나 프로세스의 실행 순서가 비결정적이기 때문에 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;임계구역(critical section)&lt;/h4&gt;
+&lt;p&gt;공유 자원에 접근할 때 순서 등의 이유로 결과가 달라지는 영역이다.&lt;br&gt;
+이 임계구역을 해결하는 방법이 &lt;code class=&quot;language-text&quot;&gt;동기화 메커니즘(ex. 세마포어)&lt;/code&gt;을 사용하는 것이다.&lt;br&gt;
+동기화 메커니즘의 근간이 바로 &lt;code class=&quot;language-text&quot;&gt;락(Lock)&lt;/code&gt;을 사용하는 것이다.&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;경쟁 조건와 교착상태에서는 다양한 동기화 기술과 알고리즘이 사용됨&lt;/p&gt;
+&lt;h2&gt;4. 기타&lt;/h2&gt;
+&lt;h3&gt;4.1 &lt;strong&gt;교착 상태 vs 기아 상태&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;교착상태는 프로세스가 자원을 얻지 못해 다음 처리를 하지 못하는 상태를 말하고 기아 상태는 프로세스가 원하는 자원을 계속 할당 받지 못하는 상태이다. 즉 교착 상태는 여러 프로세스가 동일한 자원 점유를 원할 때 발생하고 기아 상태는 여러 프로세스가 자원을 점유하기 위해 경쟁 할 때 특정 프로세스는 영원히 자원 할당을 받지 못하는 것이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;교착상태&lt;/strong&gt; : 여러 프로세스가 동일 자원 점유를 요청할 때 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;기아상태&lt;/strong&gt; : 여러 프로세스가 부족한 자원을 점유하기 위해 경쟁할 때 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4.2 교착 상태 vs 경쟁 조건&lt;/h3&gt;
+&lt;p&gt;교착 상태와 경쟁 조건은 모두 동시성 문제인 반면, 교착 상태는 리소스에 대한 순환 종속성을 포함하여 완전한 정지를 초래하는 반면, 경쟁 조건은 예측할 수 없는 작업 인터리빙과 관련되어 동시 리소스 액세스로 인해 예상치 못한 결과를 초래&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;교착 상태:&lt;/strong&gt; 교착 상태는 두 개 이상의 프로세스가 서로의 리소스 해제를 기다리고 있기 때문에 진행할 수 없는 상황. 이로 인해 순환 대기 시나리오가 발생하고 관련 프로세스가 무기한 차단됨&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;경쟁 조건:&lt;/strong&gt; 경쟁 조건은 시스템의 동작이 이벤트의 상대적인 타이밍, 특히 스레드나 프로세스가 실행되도록 예약된 순서에 따라 달라질 때 발생함. 비결정적인 실행 순서로 인해 예측할 수 없는 결과가 발생함&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item></channel></rss>
