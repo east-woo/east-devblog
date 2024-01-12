@@ -1,4 +1,156 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 10 Jan 2024 02:31:27 GMT</lastBuildDate><item><title><![CDATA[🤔 교착상태 vs 기아상태 vs 경합상태]]></title><description><![CDATA[1. 교착상태(Dead Lock…]]></description><link>https://east-woo.github.io/deadlock/</link><guid isPermaLink="false">https://east-woo.github.io/deadlock/</guid><pubDate>Tue, 09 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 교착상태(Dead Lock)란?&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 12 Jan 2024 08:08:46 GMT</lastBuildDate><item><title><![CDATA[임계영역(Critical Section), 세마포어(Semaphore) vs 뮤텍스(Mutex)]]></title><description><![CDATA[…]]></description><link>https://east-woo.github.io/criticalSections/</link><guid isPermaLink="false">https://east-woo.github.io/criticalSections/</guid><pubDate>Thu, 11 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;💡 프로세스 간 메시지를 전송하거나, 공유메모리를 통해 공유된 자원에 여러 개의 프로세스가 동시에 접근하면 임계영역(여러 프로세스가 데이터를 공유하며 수행될 때, 각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 블록) 문제가 발생할 수 있다.
+이를 해결하기 위해 데이터를 한 번에 하나의 프로세스만 접근할 수 있도록 제한을 두는 동기화 방식을 취해야 한다.
+동기화 도구에는 대표적으로 &lt;strong&gt;뮤텍스(Mutex)&lt;/strong&gt;와 &lt;strong&gt;세마포어(Semaphore)&lt;/strong&gt;가 있다. 이들은 모두 공유된 자원의 데이터를 여러 스레드/프로세스가 접근하는 것을 막는 역할을 함&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;임계영역(&lt;strong&gt;Critical Section&lt;/strong&gt;)&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;임계 영역&lt;/strong&gt;이란 한 순간 반드시 프로세스 하나만 진입해야 하는데, 프로그램에서 임계 자원을 이용하는 부분으로 공유 자원의 독점을 보장하는 코드 영역을 의미한다. 임계 구역은 지정된 시간이 지난 후 종료된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;📌 임계 영역을 해결하기 위한 방법&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;뮤텍스, 세마포어, 모니터 등이 있다.&lt;/li&gt;
+&lt;li&gt;상호 배제, 한정 대기, 융통성이라는 조건을 만족한다.&lt;/li&gt;
+&lt;li&gt;상호 배제 : 한 프로세스가 임계 영역에 들어갔을 때 다른 프로세스는 들어갈 수 없음.&lt;/li&gt;
+&lt;li&gt;한정 대기 : 특정 프로세스가 영원히 임계 영역에 들어가지 못하면 안 됨.&lt;/li&gt;
+&lt;li&gt;진행 : 임계 구역에 들어간 프로세스가 없는 상태에서, 들어가려고 하는 프로세스가 여러 개 있다면 어느 것이 들어갈지를 적절히 결정해주어야 한다.&lt;/li&gt;
+&lt;li&gt;융통성 : 한 프로세스가 다른 프로세스의 일을 방해해서는 안 됨.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;특징&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;커널 객체를 사용하지 않는다.&lt;/li&gt;
+&lt;li&gt;서로 다른 프로세스간에 접근이 불가하다&lt;strong&gt;.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;내부적으로 인터락 함수를 사용하고 있다.&lt;/li&gt;
+&lt;li&gt;커널 오브젝트를 사용하지 않기 때문에 핸들을 사용하지 않고, CRITICAL_SECTION 이라는 타입을 정의하여 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;뮤텍스(mutex)&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 뮤텍스는 Key 에 해당하는 어떤 오브젝트가 있으며 이 오브젝트를 소유한 (쓰레드,프로세스) 만이 공유자원에 접근할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;: 공유된 자원의 데이터 혹은 임계영역(Critical Section) 등에 하나의 Process 혹은 Thread가 접근하는 것을 막아줌 (동기화 대상이 하나)&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/583de34cd6c2759d4bc4fe8d30b41d3a/cb866/img.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 85.29411764705883%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC7klEQVQ4y31USW/TUBDOf+FH8A84IxXKoYdQIQ70gqiKAhckDgghiihSJdQDKlBVQvRQilRIVUilZnOzNUvJQmKTtU2zNXbiJfHy8Ww3rpMiRhrPPL8333xvZmwHiHD1GgY9TnehaZqhqqoa9l9i32OHHFbya4h3joy1Q394NjfwO5WwDtsD/X4/gsEgqtUqYrEYeJ43E8ME1IGufLmKZ6k3JuBwMMBnbxCRXN5iOCDvarUa2u02kskkKIoCwzBIJBKoVCpotVoWsKzKCDTCOBWbJqCeJ/59C9V0ymImyzLcbjcikQii0ajB0uPxIJfLIRwOG6onPKdqiU7GMVkfQRDQ7/XxP9HZKYpigpCyKKoC9bymjlEDdFEIs0Q8jlAoBF4SyCHCVtGIkj0zHs1mC16fF8ViUac01kirKbqrCTwkElksl8CU/iBXTsNHbyPAuBFkdkxL76BQyqNSruC00YCeQyVxmv3KGkktbK2Be+mCuP0JKkwqQXoXS6VbeBq4jvmv1/AiPYWlX07Ue1Xr6uLuJrhFF4SNd9AkyWTIxw9wODeNxMIs4nM30Yp6sRcMYf3bWyyXnPCWPoKue7FfXsVy5i4Okj6yT+EsFUXy/gwO552I3bsBLvDTBJQyCZQfOpFfcBJ7G/VDPwrVE0SLe1jMTuO0Y87ncSeC10ez8EX20OQ4DKsMyo/uoEDimAczEGKBixpK+270V55D8LkhaCb1UNGDRXoK1Mk6amchBOof8OpoBsds2Wwg0UHEa8RJP7asBo2NjUy0L5PmKKTbJQqrWRdW04+xknQZ/vvkE1TaRciaPibq5BieN0VvuT42hlUgyiJ4WQAn9tDudtFlOdTP2uiwrLHuD3kMVdmawVH8+NjY5kgmoAIBFRQBoipCJCU4FtqG1deSMrDOjuLs6wtAjIOKBqiILs+ixjbACtwlMLsdiWNy0+4rpE6ZbAbUAYUCXfjnmUlx2As66et/HZqmkc1mjU9NVuRLoJPyF1QI6wVeZhZIAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img.png&apos; title=&apos;img.png&apos; src=&apos;/static/583de34cd6c2759d4bc4fe8d30b41d3a/ca1dc/img.png&apos; srcset=&apos;/static/583de34cd6c2759d4bc4fe8d30b41d3a/e7570/img.png 170w,
+/static/583de34cd6c2759d4bc4fe8d30b41d3a/f46e7/img.png 340w,
+/static/583de34cd6c2759d4bc4fe8d30b41d3a/ca1dc/img.png 680w,
+/static/583de34cd6c2759d4bc4fe8d30b41d3a/02d09/img.png 1020w,
+/static/583de34cd6c2759d4bc4fe8d30b41d3a/cb866/img.png 1056w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;h2&gt;과정&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1번 프로세스가 자원을 접근하기 위해 Key를점유한다.&lt;/li&gt;
+&lt;li&gt;1번 프로세스는 키를 점유했기 때문에 공유 자원을 사용한다.&lt;/li&gt;
+&lt;li&gt;2번 프로세스가 공유 자원을 사용하기를 원한다.&lt;/li&gt;
+&lt;li&gt;2번 프로세스는 키를 점유하기 위해 대기한다.&lt;/li&gt;
+&lt;li&gt;3번 프로세스 또한 공유 자원을 사용하기 위해 2번 프로세스 다음 순번으로 대기한다.&lt;/li&gt;
+&lt;li&gt;1번 프로세스가 공유 자원을 다 사용하고 Key를 반환한다.&lt;/li&gt;
+&lt;li&gt;2번 프로세스는 대기하고 있다가 반환된 Key를 점유하고 공유 자원을 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;예시&lt;/h2&gt;
+&lt;p&gt;뮤텍스는 화장실이 하나 밖에 없는 식당과 비슷합니다. 화장실을 가기 위해서는 카운터에서 열쇠를 받아 가야 하며 당신이 화장실을 가려고 하는데 카운터에 키가 있으면 화장실에 사람이 없다는 뜻이고 당신은 그 열쇠를 이용해 화장실에 들어갈 수 있다고 가정합니다.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/d41d8cd98f00b204e9800998ecf8427e/54f3a/img_1.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 58.82352941176471%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACCklEQVQoz32S32vTUBTH958IvosPe/AH+iCoiAx/IGIdCApOER+sTyKIvsg2OyxONumDe1dcx4qOalskk3ayZm1R+8OmgdE07bZgM+O6raH35rskNxmZ1h643Jybcz7ne+49fTCt0WgglUwim1my90qlYh3DMAx7ueZ+E0JQq9WgKAo0TYMkSZBlGaqqos8KaLd1lAQR+VIZC+klCKLYE6jrOnieRywWw8doFBzHIRKJIJvNMqC+tYmfyU8ozs+hyL3HpqrsAXjNPaOmSkIoOtSNYbsNVBsSnl46jMcDB/HgxH4UUvHdpL8VWi6lxPZHRgPwP5tA2Kyf+U09wFUZk7fOInTzNJ77jqCcnu8BNBdlyefOX8C+A0dx42EIY8OTVgIDrq/ICF4/hZErxzF6tR/VwhcGpOSftr33+jL0GgOXB3F7yA9+PAi0NAdoKgxcO4lhE/jkYj8Ki5+7KoTntgyDqaxXyxCF3G4xG9isS5gYOoPg4DGEHx1CvcD1VAhbJQN2/gjYXok7/6gzNls6vs3eQT4+Bv7VFFZziyzAvKv/tewCt9eWUX3zgr2xq7ClLkMRE3bA3Pg01oolRyFFN/M+jFLMIx3w722ZdHRWrU1w914A78LxroPtBVozaNmH6Ff4fPfxq6mxsbGTnMBmcx3JVA7ffwjY2Gj1HG5X/cxsAm+nE0gtZGx/B0kmadUZLz3NAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_1.png&apos; title=&apos;img_1.png&apos; src=&apos;/static/d41d8cd98f00b204e9800998ecf8427e/ca1dc/img_1.png&apos; srcset=&apos;/static/d41d8cd98f00b204e9800998ecf8427e/e7570/img_1.png 170w,
+/static/d41d8cd98f00b204e9800998ecf8427e/f46e7/img_1.png 340w,
+/static/d41d8cd98f00b204e9800998ecf8427e/ca1dc/img_1.png 680w,
+/static/d41d8cd98f00b204e9800998ecf8427e/02d09/img_1.png 1020w,
+/static/d41d8cd98f00b204e9800998ecf8427e/9d567/img_1.png 1360w,
+/static/d41d8cd98f00b204e9800998ecf8427e/54f3a/img_1.png 1433w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_1.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;카운터에 열쇠가 없기 때문에 화장실에 사람이 있다는 뜻이며 화장실을 사용할 수 없습니다. 여자가 나올 때 까지 기다려야 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/56c414a56a2fd3c9f37af4b7c97872b7/5b89d/img_2.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 59.411764705882355%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACHUlEQVQoz3WS3WvTUBjG+w9444V/gXfeiAgy8Eb0xgvnxxDF4seFbIgMURF3U1wRnDdTER0rTGGbleIGoletM9gPR6cDy1LWYdOYJi5N16K1xmiX5uQxJx+2KfOBk/PmzZvfed5zTgCWWHYFS9ksMuk0kskkVFWlaZimSR//YtONFUWBKIqo1WqoWHGJ5yHLMgzDQIAWfG/8QJEXsFbkkGPz0DStA3TVDRQEAalUCm8SCSxm0kjE42AYBrquO8BKkUUmNonFuSmwb1/6AL3Q7lj9s4k2/LKB7+efYuTgToQO78LDof4tXXkzbYuKeZfCof4BTHySEStraBG7ygF+eB3F+Ok+PDp/ANMj5/4LpMMDTj9/gW3bd+DY4G0MX7iGOsd1HC69eoZbR3YjfHwfZsNBf8vOiz1TNiG2FbCFIm6GRnHx0jCYyQiMMt8NnEX46B7cOdmHx1dO+ffMg5KWFetO3oVSVaVVNzKsUtIBjp3Yi/Ez+/HkerCnZefnphjHTynp5ont1HNr6L+xkZsAsWYbqDUb2BA51CQe3yqS79RMd89+ra5gfS7ic0gXJO53JfoAarmEQPdV6L0enjuYVeRmziITGXMctdu+Ol0niN4YQlMqOQ7tldwWuld3rglBQ1jA/bujuHz1HpRq3c4TYtqD6qtcx0AwhNj8ggPcSh6QkDb0zRayHwvI5z9jXVY67bpA/ouI5WUWhTUOfwGDSGmIwFEAsQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_2.png&apos; title=&apos;img_2.png&apos; src=&apos;/static/56c414a56a2fd3c9f37af4b7c97872b7/ca1dc/img_2.png&apos; srcset=&apos;/static/56c414a56a2fd3c9f37af4b7c97872b7/e7570/img_2.png 170w,
+/static/56c414a56a2fd3c9f37af4b7c97872b7/f46e7/img_2.png 340w,
+/static/56c414a56a2fd3c9f37af4b7c97872b7/ca1dc/img_2.png 680w,
+/static/56c414a56a2fd3c9f37af4b7c97872b7/02d09/img_2.png 1020w,
+/static/56c414a56a2fd3c9f37af4b7c97872b7/9d567/img_2.png 1360w,
+/static/56c414a56a2fd3c9f37af4b7c97872b7/5b89d/img_2.png 1410w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_2.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;곧이어 다른 사람도 화장실에 가려고 카운터에 대기하고 있습니다. 앞사람이 화장실에서 나와 카운터에 키를 돌려놓았습니다. 이제 기다리던 사람들 중 맨 앞에 있던 사람이 키를 받아 화장실에 갈 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이것이 뮤텍스가 동작하는 방식입니다. 화장실을 이용하는 사람은 프로세스 혹은 쓰레드이며 화장실은 공유자원, 화장실 키는 공유자원에 접근하기 위해 필요한 어떤 오브젝트입니다. 즉, 뮤텍스는 Key에 해당하는 어떤 오브젝트가 있으며 이 오브젝트를 소유한 (쓰레드,프로세스) 만이 공유자원에 접근할 수 있습니다.&lt;/p&gt;
+&lt;h1&gt;세마포어(Semaphore)&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 공유 리소스에 접근할 수 있는 최대 허용치 만큼 동시 사용자(쓰레드, 프로세스) 접근을 허용하게 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;: 공유된 자원의 데이터 혹은 임계영역(Critical Section) 등에 여러 Process 혹은 Thread가 접근하는 것을 막아줌 (동기화 대상이 하나 이상)&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/8728b/img_3.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 98.23529411764706%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEWUlEQVQ4y52UeXNTVRjG82X8EH4GZ/xHUXRgFBUGCrVAKVsZ2UTQGbCydgp2QGEKSG0xyEDaUgiTNGRr1ma7SZPcNAlJ2t7se36e3EIB/3I8M+/cc84973Oe512Ohk6HXCxCq9ng/458vcjPvhF0yWdoFEVBd32YtCyrP+PxOE6nE5vNhsFgwGg04vP5cDgcWCwWTCYTer0ej8eD2+Mm6A3iULy8N/k+W039aFKZLLdezBNOplXAQqFAOBzGarUSCASYm5tTwSRJWr+ku/aLf0uJBNJihLrwm4g/xJZzCobFEo9GzpOKLq5LaDSbzM7OotPpVCZTU1NotVqVYRfMbDYzPT1FqVyhI86X00uqX3euafkcKD/spnBukGbApW7SadNoNKhWqzQFeNcqlQr1ek2dt1pNGq0W7UqZ0u8XWD2xk/zVM9RWM2hCp/bh2rOZwN7NRE8P0Kqu3fpfhmKYwd/7KfGjOwn3fYby8A808VP9LPR/gbR/C8kzA/Aq28VSgWK5SLkqrFaiIqxcLVEo5mm3m1hdbnyTt1no+xznwFe4ej5G0U2iqVv05E/1Uf5pAM/YKIYXFhaE9GvzBxhe6OWCZRdDxh7O6rdz0SLWrm1oHb/ydOY5dSG5rr1F/vReKreH6Yi1psummV+lIxhlVxWsFit+ycuItJNLiU18b9zAwb8/pH/8A04aNnA+sZG//MMUVsrIyQRNEZ/2W2HSdEQCXi/i8Rg2q51Q1M+I71tGg7v5Rb+Lc1OCobBLxj6uBLbySBolk1zhyewMuWx2LcOiQbqmUSfttrqZzWaQY6K2ZB/XPYfI5bx0aikikpl0yg21ZSzRe0wGLlHJN4jFomrdvgZUGb6N3hZsW402L5UEo84DyPI8SjpMxG8jHnFQSssYg7eZ8F9QnUvl0nrG1wG7n7aoqe5YjISZM5gILwW44TksGHtpFpMkY26ySZ9AEAwXx7kfvEwupTA9M/1GssB4I/nVLclcDo/LyzPTtCpZlu3kM2Fi4Xmiko1yJoFBMNRKVyiuVJh3zJPNF9a7ZF1yK+yn9GBMUPSTWHrJPe0Yvy0MkhCAhWyEaMguAO1UsglM0l3uOM9i0luYM7+gYX1O6foQtdkHXaloaosh5MFtyP2bSB3+GtfEPRazMW64D7G0JOK2HEXym0lEHSInSRVw3DuE6EJSNiOhPZuIH9hCpG8jBf1j8ThM3ce8YwP2wR5cvRupPp5kubEqCnsfyYRLZSWH3KRjPhqiCqzSff70nF97meaeYNv+Ec7BHdh7PmH57jU0TTmCcqKXlYNfsnxkK+2Qn5flLMPOXXjTD5FX5rBLWhYSOlKrVp7GrjLuGVIBm0qO8sXj5I98Q/HHfprR0FoM61GJkm6CWtCjHlxWMtywHedm8KiI5XeMhU5y03+Mm75jXHPvZ9p7Zz0RTdHbVaeZRib9ulPefVu6naPWWKGM2WRVs94tJa97gXm7k3hUfqcz/u37D/Cwef/n4Cu6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_3.png&apos; title=&apos;img_3.png&apos; src=&apos;/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/ca1dc/img_3.png&apos; srcset=&apos;/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/e7570/img_3.png 170w,
+/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/f46e7/img_3.png 340w,
+/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/ca1dc/img_3.png 680w,
+/static/ed3fd7f9bb0fc3553b2f5df165e59d4f/8728b/img_3.png 903w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_3.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;h2&gt;과정&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;공유 자원에 대한 최대 허용치를 정의한다. 우선, 3으로 해보겠다.&lt;/li&gt;
+&lt;li&gt;1번 프로세스가 공유 자원에 접근한다. 허용치는 2로 감소하였다.&lt;/li&gt;
+&lt;li&gt;2번 프로세스가 공유 자원에 접근한다. 허용치는 1로 감소하였다.&lt;/li&gt;
+&lt;li&gt;3번 프로세스가 공유 자원에 접근한다. 허용치는 0로 감소하였다.&lt;/li&gt;
+&lt;li&gt;4번 프로세스가 공유 자원에 접근한다. 허용치가 0이므로 대기한다.&lt;/li&gt;
+&lt;li&gt;2번 프로세스가 공유 자원을 다 사용하였다. 허용치는 1로 증가하였다.&lt;/li&gt;
+&lt;li&gt;4번 프로세스는 대기 하다 허용치가 1로 증가되어 공유 자원에 접근한다. 허용치는 다시 0으로 감소하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;예시&lt;/h2&gt;
+&lt;p&gt;세마포어는 손님이 화장실을 좀 더 쉽게 이용할 수 있는 레스토랑입니다. 세마포어를 이용하는 레스토랑의 화장실에는 여러 개의 칸이 있고 화장실 입구에는 현재 화장실의 빈 칸 개수를 보여주는 전광판이 있다고 가정합니다.
+&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/d06525fdb40722976e709c5a2cde6635/a546b/img_4.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 33.529411764705884%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABYUlEQVQoz2WQTUsCURSG73+pRUSbfkFFLaJN/YACQVq4SmghZBlkEX2ta9FCkRKCsHZFLTIpwmozzMjogE46MJiIzlQ6pnfe5o5j2PTA4RzOvec9H4RSCkatVkOx+AZZlkE7HZimaRm1PaPVauG9UoGu66hWq1BVFeVyGZqm2bUV680wDBA4sI/ZnAQhk4GjYdMTNJpNcC/PkKWc1bgIURTBcRzy+TwKhQJ4nke9XgeJh/24Oz2CKglI7AXwlIhAETnEN5es/KEjSuGm0WhAUZR/eRKeHUIs5IWQukZwahCxVS/4+ysEJwcQXfF0BWl3deoYg01TKpXsmJ2NOn9I1DOKyx0fhMdbrM+MIL7lQ+bhBqHpYZxsLP4RtNfveddJep6E58YRW/NDek3hYGEC57sBZNNJ7M+P4Wx7+Xdld6HZJ9zfgBxHLpBMprt3+dTxbTTRabdhfH3Ysbu4fzJ3jvEDEVH4lP3/KPQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_4.png&apos; title=&apos;img_4.png&apos; src=&apos;/static/d06525fdb40722976e709c5a2cde6635/ca1dc/img_4.png&apos; srcset=&apos;/static/d06525fdb40722976e709c5a2cde6635/e7570/img_4.png 170w,
+/static/d06525fdb40722976e709c5a2cde6635/f46e7/img_4.png 340w,
+/static/d06525fdb40722976e709c5a2cde6635/ca1dc/img_4.png 680w,
+/static/d06525fdb40722976e709c5a2cde6635/a546b/img_4.png 772w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_4.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;만약 당신이 화장실에 가고 싶다면 입구에서 빈 칸의 개수를 확인하고 빈 칸이 1개 이상이라면 빈칸의 개수를 하나 뺀 다음에 화장실로 입장해야 하며 나올 때 빈 칸의 개수를 하나 더해줍니다.
+&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/11d867ccd9773ef394307f2b44a3447f/68c0a/img_5.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 41.76470588235294%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABe0lEQVQoz2VSS0sCYRSdn9Gmlv2HglYFSZtatQv6BxGIm8BFFlGLltGDGVpEkmiEBpKPxEoqHc2mZBRH1DBMiyQfND5mTjPOI6cOXM79zvfdw72Xj8AAKtUqko8MisWXQRmCIPS5VCjgiY4hn8uBkyKdTiOTyYDjOKRSKZTLZRB5Jorj1SUwoXPk4jdwbpj7nAy4YbctI8/EVNMe/oJlWfA8b9AI2uuA1TQCH7mJa8cBViaHJN6Hd3cd1ulhJC6cimGvB1EU9ZDBZbNotVr6FLJO0FIBOT+K8NE2IqcUyIVx3LkpBMgtUIsTeLh0/TOUIUoGvNR0/yTrfZIMnyMBWKbG4D/cAe07g9k0KxmeIGinYJmZAxP26oZQi2R0BRHsrQd8o2bQCZ7vwOW5Qum1gna7C3/oHs1mC5+1OoLhqL4jrUDrTkbaQeH7vaTeKxpheDiQq8P8N9NGlsi2tod4ImX4CYRy+N2Ntlw5tNxopHCn08Fb5QNf9YZB/wFx2UXZ5G4OvgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img_5.png&apos; title=&apos;img_5.png&apos; src=&apos;/static/11d867ccd9773ef394307f2b44a3447f/ca1dc/img_5.png&apos; srcset=&apos;/static/11d867ccd9773ef394307f2b44a3447f/e7570/img_5.png 170w,
+/static/11d867ccd9773ef394307f2b44a3447f/f46e7/img_5.png 340w,
+/static/11d867ccd9773ef394307f2b44a3447f/ca1dc/img_5.png 680w,
+/static/11d867ccd9773ef394307f2b44a3447f/68c0a/img_5.png 756w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img_5.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;모든 칸에 사람이 들어갔을 경우 빈 칸의 개수는 0이 되며 이때 화장실에 들어가고자 하는 사람이 있다면 빈 칸의 개수가 1 혹은 양수로 바뀔 때까지 기다려야 합니다.&lt;/p&gt;
+&lt;p&gt;이처럼 세마포어는 공통으로 관리하는 하나의 값을 이용해 상호배제를 달성합니다. 세마포어도 아까와 똑같이 화장실이 공유자원이며 사람들이 쓰레드, 프로세스이다. 그리고 화장실 빈칸의 개수는 현재 공유자원에 접근할 수 있는 쓰레드,프로세스의 개수를 나타냅니다.&lt;/p&gt;
+&lt;h1&gt;뮤텍스와 세마포어의 차이&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;세마포어는 뮤텍스가 될 수 있지만, 뮤텍스는 세마포어가 될 수 없다.&lt;/li&gt;
+&lt;li&gt;세마포어는 소유할 수 없으며, 뮤텍스는 소유할 수 있고 소유주가 그에 대한 책임을 가진다.&lt;/li&gt;
+&lt;li&gt;세마포어는 동기화 대상이 여러개 일 때 사용하고, 뮤텍스는 동기화 대상이 오로지 하나 일 때 사용된다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;가장 큰 차이점은 동기화 대상의 개수 즉, 위에서 예시든 화장실의 갯수 입니다.&lt;/p&gt;
+&lt;p&gt;Mutex는 동기화 대상이 오직 1개일 때 사용하며, Semaphore는 동기화 대상이 1개 이상일 때 사용합니다.
+Mutex는 자원을 소유할 수 있고, 책임을 가지는 반면 Semaphore는 자원 소유가 불가합니다.
+Mutex는 상태가 0, 1 뿐이므로 Lock을 가질 수 있고, 소유하고 있는 스레드만이 이 Mutex를 해제할 수 있습니다. 반면 Semaphore는 Semaphore를 소유하지 않는 스레드가 Semaphore를 해제할 수 있습니다.
+Semaphore는 시스템 범위에 걸쳐 있고, 파일 시스템 상의 파일로 존재합니다. 반면, Mutex는 프로세스의 범위를 가지며 프로세스 종료될 때 자동으로 Clean up 됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[🤔 교착상태 vs 기아상태 vs 경합상태]]></title><description><![CDATA[1. 교착상태(Dead Lock…]]></description><link>https://east-woo.github.io/deadlock/</link><guid isPermaLink="false">https://east-woo.github.io/deadlock/</guid><pubDate>Tue, 09 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 교착상태(Dead Lock)란?&lt;/h2&gt;
 &lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
     &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
       &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/1c05c5694c4ca7750b99791cf01224a9/80132/img.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
