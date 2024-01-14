@@ -10,6 +10,11 @@ series: "JAVA"
 
 ## String 재사용(Interning)
 
+> - **new 연산자를 이용한 방식**<br>
+new를 통해 String을 생성하면 Heap 영역에 존재하게 된다.<br>
+> - **리터럴을 이용한 방식**<br>
+string constant pool이라는 영역에 존재하게 된다.
+
 ```java
 public class StringTest {
 
@@ -28,7 +33,7 @@ public class StringTest {
 이 두가지의 문자열 생성 방식은 JVM이 관리하는 메모리 구조상에서 차이가 발생한다.
 
 String은 다른 객체들에 비해 광범위하고, 빈번하게 사용되므로 String을 사용할 때마다 객체를 생성하는 방식으로 사용하게 된다면, 새로운 객체를 계속 만들어내는 것이기 때문에 **메모리 관리 측면에서 비효율적**이다.
-이러한 String을 효율적으로 관리하기 위해, Heap 메모리영역 속에 **String Constant Pool**을 만들었다.
+이러한 String을 효율적으로 관리하기 위해, Heap 메모리영역 속에 <span style="color:blue"> **String Constant Pool** </span>을 만들었다.
 이곳에는 생성된 문자열의 값을 보관하고 있으며, 리터럴””로 생성된 같은 값을 가지는 객체는 같은 레퍼런스(참조값, 주소)를 가지게 된다.
 
 ![img.png](img.png)
