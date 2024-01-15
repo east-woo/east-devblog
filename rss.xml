@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 12 Jan 2024 08:08:46 GMT</lastBuildDate><item><title><![CDATA[임계영역(Critical Section), 세마포어(Semaphore) vs 뮤텍스(Mutex)]]></title><description><![CDATA[…]]></description><link>https://east-woo.github.io/criticalSections/</link><guid isPermaLink="false">https://east-woo.github.io/criticalSections/</guid><pubDate>Thu, 11 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 15 Jan 2024 00:31:19 GMT</lastBuildDate><item><title><![CDATA[Java String VS new String()]]></title><description><![CDATA[String 재사용(Interning) 해당 코드를 실행하면 객체가 3개가 아니라 2개가 만들어진다. 왜 2개일까? 이 두가지의 문자열 생성 방식은 JVM이 관리하는 메모리 구조상에서 차이가 발생한다. String…]]></description><link>https://east-woo.github.io/stringPool/</link><guid isPermaLink="false">https://east-woo.github.io/stringPool/</guid><pubDate>Sat, 13 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;String 재사용(Interning)&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringTest&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; str1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hi&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; str2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Hi&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; str3 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Hi&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;해당 코드를 실행하면 &lt;strong&gt;객체가 3개가 아니라 2개&lt;/strong&gt;가 만들어진다.&lt;/p&gt;
+&lt;p&gt;왜 2개일까?&lt;/p&gt;
+&lt;p&gt;이 두가지의 문자열 생성 방식은 JVM이 관리하는 메모리 구조상에서 차이가 발생한다.&lt;/p&gt;
+&lt;p&gt;String은 다른 객체들에 비해 광범위하고, 빈번하게 사용되므로 String을 사용할 때마다 객체를 생성하는 방식으로 사용하게 된다면, 새로운 객체를 계속 만들어내는 것이기 때문에 &lt;strong&gt;메모리 관리 측면에서 비효율적&lt;/strong&gt;이다.
+이러한 String을 효율적으로 관리하기 위해, Heap 메모리영역 속에 &lt;strong&gt;String Constant Pool&lt;/strong&gt;을 만들었다.
+이곳에는 생성된 문자열의 값을 보관하고 있으며, 리터럴””로 생성된 같은 값을 가지는 객체는 같은 레퍼런스(참조값, 주소)를 가지게 된다.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/ef638d7690545977b859abc7cc253147/98650/img.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 54.11764705882353%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACJ0lEQVQoz4WT62/SYBTG+WP9xmJiovMyN4nXzcTJEj8YY+IyRJYxBxtMBssUo4DZpiZzH4CWtlxayv3OlLV9PO9bIRIT9ya/nrfNe54+PefUgf8ty4JlmnyrNs8w4xXg9Iq45pcwuynxPXsm14b8jEnnHTyJMCnRMlm0oRvQFSOmS1RaQ7z6VMDq5wLWEkV4kkWsES8+KCg1hvyMQXmO+aCM629luHbymAsomA8quLOtwOmTsEWJaNRgDuyE1GkTB8cVfDmtI3lSRzihQa/b7kaGaQsuhQXcDWaxFBbxYEfAo5CAReKGP4NwUgaqOqx0GmZsH76NFF5Hsnh/pGMvqcIbkSEUu1zwfCy4QA5ZTZiruYCM2wR7xhxuxCUgL8NUNVi6DlFUkc5qKJQ6nCLR7//igkyMC65Ec1gkl26KT96JWI7k8HQvB1cgg8j3st2bcR3p80rlHkcl8moXvcFoWvBeSMHNLVZHCbcoMpcL5Pbqpoz1j/TJZRVmp8O7zZplWZjw95oIPj+QuSM3wdwynsUkPN4VEf1aAtotQFOhH/3A/W0By1EF7piCh6EcHyV7ukhsXMNZf47Pk5PmaeaNiMs+EVfWRVzyiFiNCkCvM3FR656h3v3Jo9YcYnRu/uPSsUt1Ch6rU4S+afAfqjhMV4CSglT8BK6wgpfxInfoSajTQoaBaqNNLzBosC9YBtGiTma0LpRaHwJrBkXrzw/BVrs3QLla5/vfUwwSdtAuJ8QAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;img.png&apos; title=&apos;img.png&apos; src=&apos;/static/ef638d7690545977b859abc7cc253147/ca1dc/img.png&apos; srcset=&apos;/static/ef638d7690545977b859abc7cc253147/e7570/img.png 170w,
+/static/ef638d7690545977b859abc7cc253147/f46e7/img.png 340w,
+/static/ef638d7690545977b859abc7cc253147/ca1dc/img.png 680w,
+/static/ef638d7690545977b859abc7cc253147/98650/img.png 835w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;img.png&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;위 코드에서는 new String 연산자로 생성된 객체(Heap 메모리 영역에 저장), 그리고 리터럴로 생성된 객체(String Pool에 저장), 총 2개의 객체가 생성되는 것이다.&lt;/p&gt;
+&lt;p&gt;Java에서 String은 불변(immutable) 객체입니다. 이 덕분에 JVM은 String Constant Pool에 각 문자열 리터럴의 복사본을 하나만 저장하여, 문자열에 할당되는 메모리 양을 최적화할 수 있습니다.
+그리고 해당 과정을 재사용(Interning)이라고 합니다.
+&lt;br&gt;
+String 변수를 만들고 값을 할당할 때 JVM은 String Constant Pool에서 동일한 값의 String을 검색합니다.
+만약 동일한 값을 가진 String이 발견된다면 자바 컴파일러는 추가 메모리를 할당하는 것이 아니라, 단순히 해당 String의 주소에 대한 참조를 반환합니다.
+&lt;br&gt;
+만약 존재하지 않는다면 해당 값은 String Constant Pool에 추가되고(인턴) 해당 값에 대한 참조가 반환됩니다.&lt;/p&gt;
+&lt;h2&gt;가비지 컬렉터&lt;/h2&gt;
+&lt;p&gt;Java 7 이전에는 JVM이 고정된 크기를 가진 PermGen이라는 공간에 String Constant Pool을 배치했습니다.
+PermGen이라는 공간은 크기가 고정되어 있어서 런타임 시 확장이 불가능하며 garbage collection에 적합하지 않습니다.&lt;/p&gt;
+&lt;p&gt;PermGen에서 너무 많은 문자열을 재사용(interning)하는 경우 JVM에서 OutOfMemory 오류가 발생할 수 있습니다.
+&lt;br&gt;
+Java7 이후부터 String Constant Pool은 JVM에 의해 Garbage Colleted되는 Heap 메모리 영역에 배치되었습니다.
+Heap 영역에 배치되는 것의 장점은, 참조되지 않은 String은 GC에 의해 String Constant Pool에서 제거되어 메모리가 해제되기 때문에 OutOfMemory 오류의 위험이 감소한다는 점입니다.
+(참고로 PermGen은 Java8부터 Metaspace로 대체되었습니다.)&lt;/p&gt;
+&lt;h2&gt;참고 - Compact Strings&lt;/h2&gt;
+&lt;p&gt;Java 8버전까지는 String은 내부적으로 UTF-16으로 인코딩된 문자 배열인 char[]로 표현되어 대부분의 언어가 1바이트로 표현이 가능했음에도 불구하고 2바이트의 메모리를 사용했습니다.
+그러나 Java 9에서는 Compact Strings를 제공함으로써, 저장된 문자열의 내용에 따라 char[]과 byte[] 사이에서 적절한 인코딩을 선택하여 사용합니다.
+따라서 Heap 메모리 사용양이 상당히 줄어들었고, JVM에서 GC 오버헤드가 줄어들었습니다.&lt;/p&gt;
+&lt;h2&gt;왜 String Constant Pool은 Heap 영역에 존재할까?&lt;/h2&gt;
+&lt;p&gt;자바에서는 객체를 생성하거나 변수를 선언할 때마다 메모리에 저장됩니다.
+자바에서 메모리는 Stack과 Heap영역, 이렇게 두 가지 영역으로 나눕니다.
+Stack 영역과 Heap 영역은 서로 저장하는 데이터가 다르며, 데이터를 저장하는 방법과 데이터에 접근하는 방식이 다릅니다.&lt;/p&gt;
+&lt;p&gt;위에서도 배웠지만 String 리터럴(literal)을 선언할 때, JVM은 해당 String 객체를 이곳(String Constant Pool)에 저장하고, Stack 메모리 영역에서 이를 참조합니다.
+&lt;br&gt;
+(추가로 지금부터 설명하는 String 생성은 특별한 언급이 없는 이상 모두 리터럴로 생성되는 String입니다.)
+&lt;br&gt;
+&lt;br&gt;
+각각의 String 객체를 메모리에 생성하기 전에, JVM은 메모리의 오버헤드를 줄이기 위해 몇가지 과정을 수행합니다.
+&lt;br&gt;
+String constant pool은 HashMap으로 구현되어 있습니다. Hashmap 각각의 bucket(저장공간)은 같은 해시코드를 가진 String list를 저장합니다. (옛날 버전의 자바에서는 String constant pool의 저장공간은 고정된 크기였으며, 종종 &quot;객체 Heap을 저장하기 위한 충반한 공간이 없습니다&quot;라는 오류를 발생시켰습니다.)
+&lt;br&gt;
+&lt;br&gt;
+시스템이 클래스를 로드할 때(클래스 로더에 의해 로드될 때) 모든 클래스의 문자열 리터럴은 application-level pool(String constant pool)로 이동하는데, 이는 서로 다른 클래스의 String 리터럴들은 동일한 객체여야 하기 때문입니다.
+그리고 현재 상황(String 리터럴들이 String constant pool로 이동한 상황)에서, pool속에 들어있는 데이터들은 어떠한 종속성 없이도 각각의 Class들에서 사용이 가능해야 합니다.
+&lt;br&gt;
+일반적으로 Stack 메모리 영역에는 수명이 짧은 데이터들이 저장됩니다. 지역변수, (Heap에 저장된 실제 객체의 주소값을 참조하는) 참조변수, 그리고 실행중인 메소드들이 Stack 메모리 영역에 저장되는 데이터들입니다.
+&lt;br&gt;
+Heap 메모리 영역은 동적인 메모리 할당을 허용하며 런타임 시 Java의 객체 및 JRE 클래스를 저장합니다.&lt;/p&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ttl-blog.tistory.com/388&quot;&gt;https://ttl-blog.tistory.com/388&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://coding-factory.tistory.com/536&quot;&gt;https://coding-factory.tistory.com/536&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[임계영역(Critical Section), 세마포어(Semaphore) vs 뮤텍스(Mutex)]]></title><description><![CDATA[…]]></description><link>https://east-woo.github.io/criticalSections/</link><guid isPermaLink="false">https://east-woo.github.io/criticalSections/</guid><pubDate>Thu, 11 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;💡 프로세스 간 메시지를 전송하거나, 공유메모리를 통해 공유된 자원에 여러 개의 프로세스가 동시에 접근하면 임계영역(여러 프로세스가 데이터를 공유하며 수행될 때, 각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 블록) 문제가 발생할 수 있다.
 이를 해결하기 위해 데이터를 한 번에 하나의 프로세스만 접근할 수 있도록 제한을 두는 동기화 방식을 취해야 한다.
 동기화 도구에는 대표적으로 &lt;strong&gt;뮤텍스(Mutex)&lt;/strong&gt;와 &lt;strong&gt;세마포어(Semaphore)&lt;/strong&gt;가 있다. 이들은 모두 공유된 자원의 데이터를 여러 스레드/프로세스가 접근하는 것을 막는 역할을 함&lt;/p&gt;
