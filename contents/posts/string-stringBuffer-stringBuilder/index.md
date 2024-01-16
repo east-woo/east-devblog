@@ -160,4 +160,4 @@ public class StringBuilderExample {
 
 
 #### 📖 참고문헌 📖
-- https://inpa.tistory.com/entry/JAVA-%E2%98%95-String-StringBuffer-StringBuilder-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90#%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%90%EB%A3%8C%ED%98%95_%EB%B9%84%EA%B5%90_%EC%B4%9D%EC%A0%95%EB%A6%AC
+- https://inpa.tistory.com/entry/JAVA-☕-String-StringBuffer-StringBuilder-차이점-성능-비교#문자열_자료형_비교_총정리
