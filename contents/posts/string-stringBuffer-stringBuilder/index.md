@@ -142,20 +142,20 @@ public class StringBuilderExample {
 하지만 다음과 같이 문자열을 합치는 일이 많을 경우 단순히 + 연산을 쓰면 성능과 메모리 효율이 떨어지게 된다.
 ``` java
 
-String a = "";
-
-for(int i = 0; i < 10000; i++) {
-    a = a + i;
-}
-
-/* 위의 문자열 + 연산 식은 결국 아래와 같다. */
-/* 즉, 매번 new StringBuilder() 객체 메모리를 생성하고 다시 변수에 대입하는 멍청한 짓거리를 하고 있는 것이다. */
-
-String a = "";
-
-for(int i = 0; i < 10000; i++) {
-    a = new StringBuilder(b).append(i).toString();
-}
+    String a = "";
+    
+    for(int i = 0; i < 10000; i++) {
+        a = a + i;
+    }
+    
+    /* 위의 문자열 + 연산 식은 결국 아래와 같다. */
+    /* 즉, 매번 new StringBuilder() 객체 메모리를 생성하고 다시 변수에 대입하는 멍청한 짓거리를 하고 있는 것이다. */
+    
+    String a = "";
+    
+    for(int i = 0; i < 10000; i++) {
+        a = new StringBuilder(b).append(i).toString();
+    }
 ```
 
 
