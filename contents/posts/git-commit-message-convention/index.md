@@ -69,7 +69,7 @@ This commit implements the integration of a new payment gateway to enhance the u
 - Add new payment options to the UI
 
 Closes #456
-## 4. Git 커밋 메시지 자동화 방법
+### 4. Git 커밋 메시지 자동화 방법
    4.1 Git 커밋 메시지 템플릿 설정
    규칙을 준수하도록 커밋 메시지 템플릿을 구성합니다. 이 템플릿에는 커밋 메시지 작성을 위한 사전 정의된 섹션과 지침이 포함될 수 있습니다.
 
