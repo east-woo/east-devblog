@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 16 Jan 2024 01:13:06 GMT</lastBuildDate><item><title><![CDATA[String & StringBuffer & StringBuilder 차이]]></title><description><![CDATA[1. String Java의 String은 불변입니다. 즉, 일단 생성된 값은 변경할 수 없습니다.  
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of east-woo]]></title><description><![CDATA[Hello :) I'm east-woo.This is a dev blog.]]></description><link>https://east-woo.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 18 Jan 2024 10:01:06 GMT</lastBuildDate><item><title><![CDATA[String & StringBuffer & StringBuilder 차이]]></title><description><![CDATA[1. String Java의 String은 불변입니다. 즉, 일단 생성된 값은 변경할 수 없습니다.  
 'String'을 수정하는 것처럼 보이는 작업을 수행할 때마다 실제로는 새로운 'String' 개체를 생성하는 것입니다. 특성 Immutable…]]></description><link>https://east-woo.github.io/string-stringBuffer-stringBuilder/</link><guid isPermaLink="false">https://east-woo.github.io/string-stringBuffer-stringBuilder/</guid><pubDate>Sun, 14 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. String&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Java의 String은 불변입니다. 즉, 일단 생성된 값은 변경할 수 없습니다.&lt;/strong&gt; &lt;br&gt;
@@ -170,7 +170,7 @@
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;📖 참고문헌 📖&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/JAVA-%E2%98%95-String-StringBuffer-StringBuilder-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90#%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%90%EB%A3%8C%ED%98%95_%EB%B9%84%EA%B5%90_%EC%B4%9D%EC%A0%95%EB%A6%AC&quot;&gt;https://inpa.tistory.com/entry/JAVA-%E2%98%95-String-StringBuffer-StringBuilder-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90#%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%90%EB%A3%8C%ED%98%95_%EB%B9%84%EA%B5%90_%EC%B4%9D%EC%A0%95%EB%A6%AC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/JAVA-%E2%98%95-String-StringBuffer-StringBuilder-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90#%EB%AC%B8%EC%9E%90%EC%97%B4_%EC%9E%90%EB%A3%8C%ED%98%95_%EB%B9%84%EA%B5%90_%EC%B4%9D%EC%A0%95%EB%A6%AC&quot;&gt;https://inpa.tistory.com/entry/JAVA-☕-String-StringBuffer-StringBuilder-차이점-성능-비교#문자열_자료형_비교_총정리&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Java String VS new String()]]></title><description><![CDATA[String 재사용(Interning) new 연산자를 이용한 방식
 new를 통해 String을 생성하면 Heap 영역에 존재하게 된다. 리터럴을 이용한 방식
 string constant pool…]]></description><link>https://east-woo.github.io/stringPool/</link><guid isPermaLink="false">https://east-woo.github.io/stringPool/</guid><pubDate>Sat, 13 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;String 재사용(Interning)&lt;/h2&gt;
@@ -252,6 +252,189 @@ Heap 메모리 영역은 동적인 메모리 할당을 허용하며 런타임 �
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://ttl-blog.tistory.com/388&quot;&gt;https://ttl-blog.tistory.com/388&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://coding-factory.tistory.com/536&quot;&gt;https://coding-factory.tistory.com/536&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Git Commit Message Convention]]></title><description><![CDATA[❗ 각 회사, 프로젝트 마다 git flow 전략을 가지고 브랜치를 관리 하는 것 처럼  commit message 작성하는 규칙도 중요하다고 생각하여 이 글을 작성합니다.  git flow 전략  1. Git 커밋 메시지란 무엇인가요? Git…]]></description><link>https://east-woo.github.io/git-commit-message-convention/</link><guid isPermaLink="false">https://east-woo.github.io/git-commit-message-convention/</guid><pubDate>Sat, 13 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;❗ 각 회사, 프로젝트 마다 git flow 전략을 가지고 브랜치를 관리 하는 것 처럼  commit message 작성하는 규칙도 중요하다고 생각하여 이 글을 작성합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; &lt;strong&gt;git flow 전략&lt;/strong&gt; &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;1. Git 커밋 메시지란 무엇인가요?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Git의 맥락에서 커밋 메시지는 특정 커밋의 변경 사항을 설명하는 간략한 설명입니다. &lt;br&gt;
+이는 프로젝트 이력에 대한 문서 역할을 하며, 특정 변경이 이루어진 이유에 대한 통찰력을 제공하고 공동 작업자가 시간에 따른 코드베이스의 발전을 더 쉽게 이해하고 추적할 수 있도록 해줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. Git 커밋 메시지 규칙의 중요성&lt;/h2&gt;
+&lt;h3&gt;2.1 Git 커밋 메시지 규칙은 무엇인가요?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Git 커밋 메시지 규칙은 커밋 메시지를 작성하는 일관되고 표준화된 방법을 정의하는 일련의 지침 또는 규칙입니다. &lt;br&gt;
+여기에는 변경 내용의 성격에 대한 정보를 전달하기 위한 구조화된 형식과 특정 규칙이 포함됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.2 Git 커밋 규칙을 따라야 하는 이유&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;명확성 및 가독성: 일관된 커밋 메시지를 통해 팀 구성원은 각 커밋의 목적과 영향을 더 쉽게 이해할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;검색 및 탐색: 체계적으로 구성된 커밋 메시지는 버전 기록 검색 기능을 향상시켜 특정 변경 사항을 신속하게 식별하는 데 도움이 됩니다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자동화 및 도구: 많은 개발 도구 및 플랫폼은 변경 로그 생성 또는 CI/CD 파이프라인 트리거와 같은 자동화된 프로세스에 대한 커밋 메시지 규칙을 활용합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 커밋 컨벤션을 적용시키지 않아도 겉보기에는 특정 커밋을 보고 충분히 어떤 내용의 커밋인지 충분히 이해할 수 있다고 생각이 들 수 있습니다.&lt;br&gt;
+그러나 Commit Message 가 누적될수록 가독성이 매우 떨어집니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. Git 커밋 메시지 작성 방법&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;markdown&quot;&gt;&lt;pre class=&quot;language-markdown&quot;&gt;&lt;code class=&quot;language-markdown&quot;&gt;type(옵션): [#issueNumber-]Subject   
+
+body(옵션)                          
+
+footer(옵션)                        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3.1 기본 형식(Commit Message 구조)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;기본적으로 커밋 메시지는 &lt;strong&gt;제목/텍스트/바닥글&lt;/strong&gt;로 구성합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;3.2 타입, 태그&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;markdown&quot;&gt;&lt;pre class=&quot;language-markdown&quot;&gt;&lt;code class=&quot;language-markdown&quot;&gt;tag(옵션): [#issueNumber-]Subject
+
+---------:&gt; 예시 &amp;lt;:---------
+
+Feat: 이진법 변환 함수 기능 추가 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;어떤 의도로 커밋했는지를 type에 명시해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;제목은 &quot; 태그(tag) + 제목(subject) &quot; 으로 구성되며, 태그는 영어로 쓰되, 첫 문자는 대문자 로 합니다.&lt;/li&gt;
+&lt;li&gt;&quot;tag: subject&quot; 의 형태이며, &quot;:&quot; 뒤에 space 가 있음에 유의합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;자주 사용하는 태그 종류&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Feat : 새로운 기능을 추가하는 경우&lt;/li&gt;
+&lt;li&gt;Fix : 버그를 고친경우&lt;/li&gt;
+&lt;li&gt;Docs : 문서를 수정한 경우&lt;/li&gt;
+&lt;li&gt;Style : 코드 포맷 변경, 세미콜론 누락, 코드 수정이 없는경우&lt;/li&gt;
+&lt;li&gt;Refactor : 코드 리펙토링&lt;/li&gt;
+&lt;li&gt;Test : 테스트 코드. 리펙토링 테스트 코드를 추가했을 때&lt;/li&gt;
+&lt;li&gt;Chore : 빌드 업무 수정, 패키지 매니저 수정&lt;/li&gt;
+&lt;li&gt;Design : CSS 등 사용자가 UI 디자인을 변경했을 때&lt;/li&gt;
+&lt;li&gt;Rename : 파일명(or 폴더명) 을 수정한 경우&lt;/li&gt;
+&lt;li&gt;Remove : 코드(파일) 의 삭제가 있을 때. &quot;Clean&quot;, &quot;Eliminate&quot; 를 사용하기도 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;기타 태그 타입들&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Add : 코드나 테스트, 예제, 문서등의 추가 생성이 있는경우&lt;/li&gt;
+&lt;li&gt;Improve : 향상이 있는 경우. 호환성, 검증 기능, 접근성 등이 될수 있습니다.&lt;/li&gt;
+&lt;li&gt;Implement : 코드가 추가된 정도보다 더 주목할만한 구현체를 완성시켰을 때&lt;/li&gt;
+&lt;li&gt;Move : 코드의 이동이 있는경우&lt;/li&gt;
+&lt;li&gt;Updated : 계정이나 버전 업데이트가 있을 때 사용. 주로 코드보다는 문서나, 리소스, 라이브러리등에 사용합니다.&lt;/li&gt;
+&lt;li&gt;Comment : 필요한 주석 추가 및 변경&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.3 제목&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;제목은 코드의 변경 사항에 대해 짧은 요약을 나타냅니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;영어로 제목을 작성하는 경우&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;markdown&quot;&gt;&lt;pre class=&quot;language-markdown&quot;&gt;&lt;code class=&quot;language-markdown&quot;&gt;&lt;span class=&quot;token list punctuation&quot;&gt;1.&lt;/span&gt; 제목은 50자를 넘기지 않고, 대문자로 작성하며 마침표를 붙이지 않습니다.
+&lt;span class=&quot;token list punctuation&quot;&gt;2.&lt;/span&gt; 제목은 과거형을 사용하지 않고, 명령조로 시작합니다.
+   ex) 제목을 Fixed 가 아닌, Fix 로 작성합시다.
+( 커밋메시지를 예를들어 Fix : &quot;Modify album buy bug&quot; 로 작성하기 )&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;한글로 제목을 작성하는 경우&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&quot;고침&quot;, &quot;추가&quot;, &quot;변경&quot; 등의 명령조 로 시작합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;ex) Feat: &quot;추가 get data api 함수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.4 텍스트(본문)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;선택사항이지만 복잡한 변경에는 권장됩니다.&lt;/li&gt;
+&lt;li&gt;부연 설명이 필요하거나 커밋한 이유를 설명할 경우 작성해주면 됩니다.&lt;/li&gt;
+&lt;li&gt;본문 내용은 어떻게 변경했는지 보다, 무엇을 변경했는지 또는 왜 변경했는지를 설명하도록 합시다.&lt;/li&gt;
+&lt;li&gt;텍스트는 추가 세부 정보를 제공하고 컨텍스트를 제공하며 변경이 필요한 이유를 설명합니다. &lt;/li&gt;
+&lt;li&gt;제목은 변경 사항을 간략하게 요약한 것입니다. 50자 이내로 작성해야 하며 명령형으로 작성해야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;예시&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;markdown&quot;&gt;&lt;pre class=&quot;language-markdown&quot;&gt;&lt;code class=&quot;language-markdown&quot;&gt;Feat: 이진법 변환 함수 기능 추가
+
+외부 API를 통해 받아온 코드를 16진법에서 2진법을 변환하기 위해 유틸 클래스 생성 및 진법 변환 함수 기능 추가 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3.5 바닥글&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;바닥글에는 문제에 대한 참조나 주요 변경 사항과 같은 모든 메타데이터가 포함됩니다. 또한 선택 사항입니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;issue tracker id 를 작성할 때 사용합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;형식 : 꼬리말은 &quot;유형: #이슈 번호&quot; 형식으로 사용합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;해결된 이슈도 추가하여 줘야합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;바닥글에 사용되는 태그들&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Closes:&lt;br&gt;
+Example: Closes #123 &lt;br&gt;
+커밋이 특정 문제 번호를 종료. &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Resolves:&lt;br&gt;
+Example: Resolves #789 &lt;br&gt;
+&apos;Closes&apos; 및 &apos;Fixes&apos;와 마찬가지로 커밋으로 특정 문제가 해결되었음을 나타냅니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Fixes:&lt;br&gt;
+Example: Fixes #456&lt;br&gt;
+&apos;Closes&apos;와 유사하며 커밋이 특정 문제를 해결했음을 나타냅니다(아직 해결이 되지 않는 경우)&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Breaking Change:&lt;br&gt;
+Example: BREAKING CHANGE: The API endpoint has been deprecated. Update your calls accordingly.&lt;br&gt;
+커밋이 주요 변경 사항을 도입하고 세부 정보를 제공하도록 지정합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Signed-off-by:&lt;br&gt;
+Example: Signed-off-by: John Doe &lt;a href=&quot;mailto:john@example.com&quot;&gt;john@example.com&lt;/a&gt;&lt;br&gt;
+작성자가 커밋을 승인했음을 나타냅니다. 이는 오픈 소스 프로젝트에서 기여자 동의를 확인하기 위해 자주 사용됩니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Reviewed-by:&lt;br&gt;
+Example: Reviewed-by: Reviewer Name &lt;a href=&quot;mailto:reviewer@example.com&quot;&gt;reviewer@example.com&lt;/a&gt;&lt;br&gt;
+특정인이 커밋을 검토했음을 나타냅니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;See also:&lt;br&gt;
+Example: See also: #987&lt;br&gt;
+관련 문제 또는 풀 요청에 대한 참조를 제공합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Related:&lt;br&gt;
+Example: Related to: #654&lt;br&gt;
+해당 커밋에 관련된 이슈번호 (아직 해결되지 않은 경우)입니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. Git 커밋 메시지 자동화 방법&lt;/h2&gt;
+&lt;h3&gt;4.1. 서버 훅: Git의 push rule 기능 사용하기&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Git 서버 후크는 특정 이벤트에 대한 응답으로 서버에서 실행되는 스크립트입니다. &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;특히 &apos;pre-receive&apos; 후크는 업데이트가 저장소에 승인되기 전에 호출됩니다. Git의 푸시 규칙 기능을 활용하면 특정 커밋 메시지 규칙을 적용할 수 있습니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;도구: Commitizen, Husky&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;위치: 이 도구는 개발자의 로컬 컴퓨터(클라이언트 측)에서 작동합니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;목적: 개발자의 로컬 작업 흐름과 환경을 향상시키는 데 사용됩니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;예: Commitizen은 개발자가 로컬 컴퓨터에서 표준화된 커밋 메시지를 생성하는 데 도움이 됩니다. Husky는 Git 후크를 로컬에서 관리하는 데 도움을 줍니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4.2. 클라이언트 훅: 푸시하기 전 미리 검사하기&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트 후크는 개발자가 변경하는 로컬 시스템에서 실행됩니다. &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&apos;pre-push&apos; 후크는 &apos;git push&apos; 명령이 실행되기 전에 트리거되어 개발자가 사전 확인을 수행할 수 있도록 합니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;훅: 예에는 &apos;pre-receive&apos;, &apos;update&apos;, &apos;post-receive&apos;이 포함됩니다.&lt;br&gt; &lt;/li&gt;
+&lt;li&gt;위치: 이 후크는 Git 서버에 설치됩니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;목적: 특정 Git 작업(예: 변경 사항 푸시)이 수행될 때 정책을 시행하고, 작업을 수행하거나, 서버에서 이벤트를 트리거하는 데 사용됩니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;예: &apos;사전 수신&apos; 서버 측 후크는 커밋 메시지 규칙을 적용하거나 푸시를 수락하기 전에 특정 조건을 확인할 수 있습니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;5. Git emojis 사용&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Git emojis는 이모티콘을 사용하여 커밋 메시지를 시각적으로 표현하고 분류하는 방법입니다.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gitmoji.dev/&quot;&gt;https://gitmoji.dev/&lt;/a&gt; 에서 참고하여 작성.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;인텔리제이는 Gitmoji, VS CODE는 Gitmoji Plug-in 지원&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;gitmoji-cli를 활용하여 Gitmoji를 터미널에서 바로 적용가능&lt;/li&gt;
+&lt;li&gt;이모티콘은 추가 컨텍스트를 제공하기 위해 기존 커밋 메시지와 함께 사용되는 경우가 많습니다.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;예시&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;markdown&quot;&gt;&lt;pre class=&quot;language-markdown&quot;&gt;&lt;code class=&quot;language-markdown&quot;&gt;   🚀: 새로운 기능
+   🐛: 버그 수정
+   📚: 문서 업데이트
+   ⚙️: 코드 리팩토링
+   🚨: 획기적인 변화&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;결론&lt;/h2&gt;
+&lt;p&gt;Git 커밋 메시지 규칙을 따르고 자동화를 활용함으로써 팀은 협업을 간소화하고 깨끗한 버전 기록을 유지하며 전체 프로젝트 문서를 향상시킬 수 있습니다.&lt;/p&gt;
+&lt;p&gt;참고 문헌&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://velog.io/@msung99/Git-Commit-Message-Convension&quot;&gt;https://velog.io/@msung99/Git-Commit-Message-Convension&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[임계영역(Critical Section), 세마포어(Semaphore) vs 뮤텍스(Mutex)]]></title><description><![CDATA[…]]></description><link>https://east-woo.github.io/criticalSections/</link><guid isPermaLink="false">https://east-woo.github.io/criticalSections/</guid><pubDate>Thu, 11 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;💡 프로세스 간 메시지를 전송하거나, 공유메모리를 통해 공유된 자원에 여러 개의 프로세스가 동시에 접근하면 임계영역(여러 프로세스가 데이터를 공유하며 수행될 때, 각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 블록) 문제가 발생할 수 있다.
 이를 해결하기 위해 데이터를 한 번에 하나의 프로세스만 접근할 수 있도록 제한을 두는 동기화 방식을 취해야 한다.
