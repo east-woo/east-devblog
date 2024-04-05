@@ -77,6 +77,53 @@ public class StringBufferExample {
 - **사용 사례**:<br>
   - 스레드 안전성이 요구되는 멀티스레드 환경에서. 문자열에 대한 동적 수정이 필요한 경우.
 
+### Thread 안정성 및 속도 Test
+```java
+public class StringBufferThreadUnsafeExample {
+    private static StringBuffer stringBuffer = new StringBuffer();
+
+    public static void main(String[] args) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 10000; i++) {
+                stringBuffer.append("A");
+            }
+        });
+
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 10000; i++) {
+                stringBuffer.append("B");
+            }
+        });
+
+        // Start both threads
+        thread1.start();
+        thread2.start();
+
+        // Wait for both threads to finish
+        thread1.join();
+        thread2.join();
+
+        long endTime = System.currentTimeMillis();
+
+        // Check if StringBuilder contains only "A" and "B" characters
+        String result = stringBuffer.toString();
+        int countA = (int) result.chars().filter(ch -> ch == 'A').count();
+        int countB = (int) result.chars().filter(ch -> ch == 'B').count();
+        System.out.println("'A' count : " +countA);
+        System.out.println("'B' count : " +countB);
+        assert countA == 10000 : "예상되는 10000자의 'A' 문자, 찾은 문자 " + countA;
+        assert countB == 10000 : "예상되는 10000자의 'A' 문자, 찾은 문자 " + countB;
+
+        long executionTime = endTime - startTime;
+        System.out.println("실행시간 : " + executionTime);
+    }
+}
+```
+#### 결과
+![img_3.png](img_3.png)
+
 ## 3. StringBuilder
    > StringBuilder는 변경 가능한 문자 시퀀스를 나타낸다는 점에서 StringBuffer와 유사합니다. 
    > 그러나 StringBuffer와는 달리 동기화되지 않으므로 단일 스레드 환경에서 더 빠릅니다.
@@ -100,6 +147,52 @@ public class StringBuilderExample {
 - **사용 사례**:
   - 스레드 안전성이 문제가 되지 않는 단일 스레드 환경에서. 문자열에 대한 동적 수정이 필요하고 성능이 중요한 경우.
 
+### Thread 안정성 및 속도 Test
+```java
+public class StringBuilderThreadUnsafeExample {
+    private static StringBuilder stringBuilder = new StringBuilder();
+
+    public static void main(String[] args) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 10000; i++) {
+                stringBuilder.append("A");
+            }
+        });
+
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 10000; i++) {
+                stringBuilder.append("B");
+            }
+        });
+
+        // Start both threads
+        thread1.start();
+        thread2.start();
+
+        // Wait for both threads to finish
+        thread1.join();
+        thread2.join();
+
+        long endTime = System.currentTimeMillis();
+
+        // Check if StringBuilder contains only "A" and "B" characters
+        String result = stringBuilder.toString();
+        int countA = (int) result.chars().filter(ch -> ch == 'A').count();
+        int countB = (int) result.chars().filter(ch -> ch == 'B').count();
+        System.out.println("'A' count : " +countA);
+        System.out.println("'B' count : " +countB);
+        assert countA == 10000 : "예상되는 10000자의 'A' 문자, 찾은 문자 " + countA;
+        assert countB == 10000 : "예상되는 10000자의 'A' 문자, 찾은 문자 " + countB;
+
+        long executionTime = endTime - startTime;
+        System.out.println("실행시간 : " + executionTime);
+    }
+}
+```
+#### 결과
+![img_2.png](img_2.png)
 ## 결론
 ![img.png](img.png)
 
