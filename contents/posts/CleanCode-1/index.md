@@ -102,12 +102,12 @@ series: "Clean Code"
 
 **요약**
 
-<aside>
-💡 - 성능이 좋은 코드
-- 의미가 **명확한** 코드 = **가독성**이 좋은 코드
-- **중복이 제거**된 코드
 
-</aside>
+💡 성능이 좋은 코드<br>
+💡 의미가 **명확한** 코드 = **가독성**이 좋은 코드<br>
+💡 **중복이 제거**된 코드<br>
+
+
 
 ![보이스카우트 룰](img_7.png)
 
@@ -178,15 +178,15 @@ System.out.printf("User Requested %s. count = %d",
 
 ![](img_8.png)
 
-i,j,k대신 맥락에 맞는 이름이 있다.
-i,j -> row, col / width, height
-i,j, k -> row, col, depth
+- i, j, k 대신 맥락에 맞는 이름이 있다.<br>
+- i, j -> row, col / width, height<br>
+- i, j, k -> row, col, depth<br>
 
 ### 통일성 있는 단어 사용하기
 
-Member/ Customer/ User
-Service / Manager
-Repository / Dao
+- Member / Customer / User <br>
+- Service / Manager <br>
+- Repository / Dao <br>
 
 ### 변수명에 타입 넣지 않기
 
@@ -210,7 +210,7 @@ public class ShapeFactoryImpl(👍) -> CircleFactory
 
 ### Package Naming Guide
 
-All lower case, no underscores
+- All lower case, no underscores
 
 ```java
 com.example.deepspace(👍)
@@ -220,7 +220,7 @@ com.example.deep_space(👎)
 
 ### Class Naming Guide
 
-UpperCamelCase (대문자로 시작)
+- UpperCamelCase (대문자로 시작)
 
 ```java
 // 클래스는 명사. 명사구
@@ -235,4 +235,7 @@ HashTest, HashIntegrationTest
 
 ### Method Naming Guide
 
-LowerCameICase (소문자로 시작)
+- LowerCameICase (소문자로 시작)
+```java
+sendMessage, stop // 메서드는 동사, 동사구
+```
