@@ -13,11 +13,11 @@ series: "Clean Code"
 
 ## SOLID원칙 (객체지향 설계의 5가지 원칙)
 
-![img.png](img.png)
+![SOLID원칙](img.png)
 
 ### **SRP( Single Responsibility Principle ), 단일 책임 원칙**
 
-![img_1.png](img_1.png)
+![SRP](img_1.png)
 
 **객체는 단 하나의 책임만 가져야 한다는 원칙**.
 
@@ -30,7 +30,7 @@ series: "Clean Code"
 
 **기존의 코드를 변경하지 않으면서( closed ), 기능을 추가할 수 있도록( open ) 설계가 되어야 한다는 원칙**.
 
-![img_2.png](img_2.png)
+![OCP](img_2.png)
 
 - 변경을 위한 비용은 가능한 줄이고, 확장을 위한 비용은 가능한 극대화 해야 한다.
 - 요구사항의 변경이나 추가사항이 발생하더라도, 기존 구성요소에는 수정이 일어나지 않고, 기존 구성 요소를 쉽게 확장해서 재사용한다.
@@ -38,7 +38,7 @@ series: "Clean Code"
 
 ### **LSP ( Liskov Substitution Principle ), 리스코프 치환 원칙**
 
-![img_3.png](img_3.png)
+![LSP](img_3.png)
 
 **자식 클래스는 최소한 자신의 부모 클래스에서 가능한 행위는 수행할 수 있어야 한다는 설계 원칙**.
 
@@ -51,7 +51,7 @@ series: "Clean Code"
 
 ### **ISP ( Interface Segregation Principle ), 인터페이스 분리 원칙**
 
-![img_4.png](img_4.png)
+![ISP](img_4.png)
 
 **자신이 사용하지 않는 인터페이스는 구현하지 말아야 한다는 설계 원칙**.
 
@@ -61,7 +61,7 @@ series: "Clean Code"
 
 ### **DIP ( Dependency Inversion Principle ), 의존 역전 원칙**
 
-![img_5.png](img_5.png)
+![DIP](img_5.png)
 
 객체들이 서로 정보를 주고 받을 때 의존 관계가 형성되는데, **이 때** **객체들은** **나름대로의 원칙을 갖고 정보를 주고 받아야 한다는 설계 원칙**.
 
@@ -71,7 +71,7 @@ series: "Clean Code"
 - 하위 모델의 변경이 상위 모듈의 변경을 요구하는 위계관계를 끊는다.
 - 실제 사용관계는 그대로이지만, 추상화를 매개로 메시지를 주고 받으면서 관계를 느슨하게 만든다.
 
-DIP 예제
+**DIP 예제**
 
 ```java
 class PaymentController {
