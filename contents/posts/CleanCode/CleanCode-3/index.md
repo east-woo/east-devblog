@@ -9,7 +9,7 @@ tags:
 series: "Clean Code"
 ---
 
-**4장 주석**<br>
+**Chapter 04. 주석**<br>
 **page 67 ~ 94**
 
 ## 주석을 최대한 쓰지 말자

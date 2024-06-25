@@ -9,7 +9,7 @@ tags:
 series: "Clean Code"
 ---
 
-**5장 형식 맞추기**<br>
+**Chapter 05. 형식 맞추기**<br>
 **page 95 ~ 116**
 
 ## 포멧팅이 중요한 이유
