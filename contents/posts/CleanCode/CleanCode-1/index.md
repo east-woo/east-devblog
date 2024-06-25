@@ -9,7 +9,8 @@ tags:
 series: "Clean Code"
 ---
 
-**클린코드** **1장 깨끗한 코드, 2장 의미 있는 이름 page 1-38**
+**Chapter 01. 깨끗한 코드 & Chapter 02. 의미 있는 이름**<br>
+**page 1 ~ 38**
 
 
 ## 나쁜 코드

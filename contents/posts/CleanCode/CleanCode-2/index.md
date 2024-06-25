@@ -9,7 +9,8 @@ tags:
 series: "Clean Code"
 ---
 
-**클린코드** **3장 함수**
+**Chapter 03. 함수**<br>
+**page 39 ~ 66**
 
 ## SOLID원칙 (객체지향 설계의 5가지 원칙)
 
