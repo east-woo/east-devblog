@@ -26,46 +26,45 @@ series: "Clean Code"
 - 단순히 getter, setter가 있다고 객체가 되지 않는다. (위에 내용 있음)
 ```java
 public interface Vehicle {
-    double getfuelTankCapacityInGallons(); // 연료탱트 용량(갤런 단위)
-    double getGallonsOfGasoline(); // 가솔린 (갤런 단위)
+        double getfuelTankCapacityInGallons(); // 연료탱트 용량(갤런 단위)
+        double getGallonsOfGasoline(); // 가솔린 (갤런 단위)
 }
-
 public class Car implements Vehicle {
-    double fuelTankCapacityInGallons;
-    double gallonsOfGasoline;
+        double fuelTankCapacityInGallons;
+        double gallonsOfGasoline;
 
-    public double getFuealTankCapacityInGallons() {
-        return this.fualTankCapacityInGallons;
-    }
+        public double getFuealTankCapacityInGallons() {
+            return this.fualTankCapacityInGallons;
+        }
 
-    public double getGallonsOfGasoline() {
-        return this.gallonsOfGasoline;
-    }
+        public double getGallonsOfGasoline() {
+            return this.gallonsOfGasoline;
+        }
 }
 ```
+
 
 #### 객체
 - 자신이 가진 값을 그대로 주는 것이 아닌, 연료를 퍼센트로 변환하는 로직이 들어있다.
 ```java
 public interface Vehicle {
-  double getPercentFuelRemain();
+      double getPercentFuelRemain();
 }
-
 public class Car implements Vehicle {
-  double fuelTankCapacityInGallons;
-  double gallonsOfGasoline;
+        double fuelTankCapacityInGallons;
+        double gallonsOfGasoline;
   
-  public Car(double fuelTankCapacityInGallons, double gallonsOfGasoline) {
-    if (fuelTankcapacityInGalons <= 0) {
-      throw new IllegalArgumentException("fuelTankCapacityInGallons은 0보다 커야한다.");
-      this.fuelTankCapacityInGallons = fuelTankCapacityInGallons;
-      this.gallonsOfGasoline = gallonsOfGasoline;
-    }
-    
-    public double getPercentFuelRemain() {
-      return this.gallonsOfGasoline / this.fuelTankCapacityInGallons * 100;
-    }
-  }
+      public Car(double fuelTankCapacityInGallons, double gallonsOfGasoline) {
+            if (fuelTankcapacityInGalons <= 0) {
+                  throw new IllegalArgumentException("fuelTankCapacityInGallons은 0보다 커야한다.");
+                  this.fuelTankCapacityInGallons = fuelTankCapacityInGallons;
+                  this.gallonsOfGasoline = gallonsOfGasoline;
+            }
+        
+            public double getPercentFuelRemain() {
+                 return this.gallonsOfGasoline / this.fuelTankCapacityInGallons * 100;
+            }
+      }
 }
 ```
 - getPercentFuelRemain( ) : 자신이 가진 값을 바로 주는 것이 아니라 나름대로 값을 다뤄서 넘겨주게된다<br>
@@ -255,7 +254,7 @@ public class Employee extends ActiveRecord{
 ```
 
 ### Database row를 객체에 맵평하는 패턴
-:현업에서의 Repository, Entity와 유사
+: 현업에서의 Repository, Entity와 유사
 
 • 비즈니스 로직 에서드를 추가해 객체로 취급하는 건 바람직하지 않다.<br>
 • 비즈니스 로직을 담으면서 내부 자료를 숨기는 객체는 따로 생성한다.<br>
