@@ -9,7 +9,7 @@ tags:
 series: "Clean Code"
 ---
 
-**Chapter 06. 오류 처리**<br>
+**Chapter 07. 오류 처리**<br>
 **page 129 ~ 142**
 
 
