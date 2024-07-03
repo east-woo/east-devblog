@@ -66,7 +66,7 @@ public class SuperDashboard extends JFrame implements MetaDataUser {
     public int getBuildNumber() 
 }
 ```
--> 'focus, version 두 가지 책임이 보인다.’
+-> "focus, version 두 가지 책임이 보인다."
 
 #### 예제 2. 좋은 코드👍
 ```java
@@ -102,11 +102,17 @@ public Version {
 당장 알 필요가 없는 사실까지 들이일어 독자를 방해한다.
 >
 
-
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cb148c2e-a3df-4913-bf0f-61861acfbb44/de594114-65e1-4777-880d-844b2b123544/Untitled.png)
+```java
+class PaymentService {
+    public void pay();
+    public void cancel();
+    public void getAccount();
+    public void getAccountHistory();
+}
+```
 
 **요구사항: 환불 기능을 추가하라**
+
 클래스가 많은 기능을 가진 만큼
 모든 기능을 이해하고 추가 기능을 구현할 수 있다.
 그리고 클래스는 더 많은 기능을 가지게 된다..
@@ -115,7 +121,14 @@ public Version {
 다른 작은 클래스와 협력해 시스템에 필요한 동작을 수행한다.
 >
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cb148c2e-a3df-4913-bf0f-61861acfbb44/2360239f-fcf7-4d97-80cb-4753d649fc8e/Untitled.png)
+```java
+class PaymentService {
+    public void pay();
+    public void cancel();
+    public void getAccount();
+    public void getAccountHistory();
+}
+```
 
 ---
 
