@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-7] 모호한 경계를 적당히 구분짓기"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-29
-update: 2024-06-29
+date: 2024-06-30
+update: 2024-06-30
 tags:
   - 독서
   - Clean Code

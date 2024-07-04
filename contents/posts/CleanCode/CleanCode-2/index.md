@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-2] 함수를 안전하고 간결하게 작성하기"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-10
-update: 2024-06-10
+date: 2024-06-11
+update: 2024-06-11
 tags:
   - 독서
   - Clean Code

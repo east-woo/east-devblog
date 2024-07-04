@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-8] 깨끗한 테스트 코드"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-29
-update: 2024-06-29
+date: 2024-07-01
+update: 2024-07-01
 tags:
   - 독서
   - Clean Code

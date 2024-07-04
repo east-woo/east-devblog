@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-4] 코드의 가독성에 필수적인 포맷팅"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-10
-update: 2024-06-10
+date: 2024-06-14
+update: 2024-06-14
 tags:
   - 독서
   - Clean Code

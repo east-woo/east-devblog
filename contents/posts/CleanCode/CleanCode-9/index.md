@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-9] 클래스 잘 설계하기"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-29
-update: 2024-06-29
+date: 2024-07-02
+update: 2024-07-02
 tags:
   - 독서
   - Clean Code

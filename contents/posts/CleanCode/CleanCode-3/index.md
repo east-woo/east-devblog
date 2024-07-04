@@ -1,8 +1,8 @@
 ---
 title: "[클린코드-3] 코드를 보조하는 주석"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-10
-update: 2024-06-10
+date: 2024-06-13
+update: 2024-06-13
 tags:
   - 독서
   - Clean Code
