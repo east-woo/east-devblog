@@ -9,7 +9,7 @@ tags:
 series: "Outlier"
 ---
 
-![img.png](img.png)
+![](img.png)
 
 ## Introduction
 
