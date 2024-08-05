@@ -1,242 +1,467 @@
 ---
-title: "[클린코드-1] 클린 코드와 그 첫걸음"
+title: "Test-Driven Development: By Example(테스트 주도 개발) - 화폐 예제"
 description: "어떻게 글을 작성하고 추가할까요?"
-date: 2024-06-10
-update: 2024-06-10
+date: 2024-08-02
+update: 2024-08-02
 tags:
   - 독서
-  - Clean Code
-series: "Clean Code"
+  - Test-Driven Development
+series: "Test-Driven Development: By Example"
+---
+# 0. 들어가는 글
+
+테스트 주도 개발(TDD, Test-Driven Development)의 궁극적인 목표는 작동하는 깔끔한 코드의 작성이다. 작동하는 깔끔한 코드가 훌륭한 목표임을 말해주는 수많은 이유가 있다.
+
+- 예측 가능한 개발 방법이다. 끊임없이 발생할 버그에 대해 걱정하지 않고, 일이 언제 마무리될지 알 수 있다.
+- 코드가 가르쳐주는 모든 교훈을 학습할 기회를 갖게 된다. 처음 생각나는 대로 후딱 완료해 버리면 두 번째 것, 더 나은 것에 대해 생각할 기회를 잃게 된다.
+- 당신이 만든 소프트웨어는 사용자의 삶을 향상시켜 준다.
+- 동료들이 당신을 존경할 수 있게 해주며, 나 역시 동료들을 존경할 수 있게 된다.
+- 작성하는 동안 기분이 좋다.
+
+테스트 주도 개발은 자동화된 테스트로 개발을 이끌어가는 방식이다. 테스트 주도 개발에서는 다음의 두 가지 단순한 규칙만을 따른다.
+
+- 오직 자동화된 테스트가 실패할 경우에만 새로운 코드를 작성한다.
+- 중복을 제거한다.
+
+또한 위의 두 가지 규칙에 의해 프로그래밍 순서가 다음과 같이 결정된다.
+
+- 빨강: 실패하는 작은 테스트를 작성한다. 처음에는 컴파일조차 되지 않을 수 있다.
+- 초록: 빨리 테스트가 통과하게끔 만든다. 이를 위해 어떠한 죄악(테스트만 간신히 통과 할 수 있게끔 함수가 무조건 특정 상수만을 반환하는 등)을 저질러도 좋다.
+- 리팩토링: 일단 테스트를 통과하게만 하는 와중에 생겨난 모든 중복을 제거한다.
+
+해당 책을 읽고 나면 읽고나면
+
+- 단순하게 시작하고
+- 자동화된 테스트를 만들고
+- 새로운 설계 결정을 한번에 하나씩 도입하기 위해 리팩토링을 할 준비가 될 것이다.
+
 ---
 
-**Chapter 01. 깨끗한 코드 & Chapter 02. 의미 있는 이름**<br>
-**page 1 ~ 38**
+## 1. 화폐 예제
 
+1부에서는 완전히 테스트에 의해 주도되는 전형적 모델 코드를 개발할 것이다. 이 장의 목표는 저자가 우리(나)에게 테스트 주도 개발(TDD)의 리듬을 보도록 하는 것이다. 그 리듬은 다음과 같이 요약할 수 있다.
 
-## 나쁜 코드
+1. 재빨리 테스트를 하나 추가한다.
+2. 모든 테스트를 실행하고 새로 추가한 것이 실패하는지 확인한다.
+3. 코드를 조금 바꾼다.
+4. 모든 테스트를 실행하고, 전부 성공하는지 확인한다.
+5. 리팩토링을 통해 중복을 제거한다.
 
-**성능이 나쁜 코드**
+이러한 리듬을 통해 다음과 같은 사실들을 배울 수 있을 것이다.
 
-> 불필요한 연산이 들어가서
-개선의 여지가 있는 코드
->
+- 각각의 테스트가 기능의 작은 증가분을 어떻게 커버하는지
+- 새 테스트를 돌아가게 하기 위해 얼마나 작고 못생긴 변화가 가능한지
+- 얼마나 자주 테스트를 실행하는지
+- 얼마나 수 없이 작은 단계를 통해 리팩토링이 되어가는지
 
-**의미가 모호한 코드**
+### **1장. 다중 통화를 지원하는 Money 객체**
 
-> 이해하기 어려운 코드 네이밍과 그 내용이 다른 코드
->
+다중 통화를 지원하는 Money객체부터 시작해보자.
+다음과 같은 보고서가 있다고 하자.
 
-**중복된 코드**
+| 종목 | 주 | 가격 | 합계 |
+| --- | --- | --- | --- |
+| IBM | 1000 | 25 | 25000 |
+| GE | 400 | 100 | 40000 |
+|  |  | 총합 | 65000 |
 
-> 비슷한 내용인데 중복되는 코드들은
-버그를 남는다.
->
+위의 보고서에 다중 통화를 지원하고자 하는데, 그러기 위해서는 통화 단위를 추가해야 한다.
 
-### 나쁜 코드가 나쁜이유
+| 종목 | 주 | 가격 | 합계 |
+| --- | --- | --- | --- |
+| IBM | 1000 | 25USD | 25000USD |
+| GE | 400 | 100CHF | 40000CHF |
+|  |  | 총합 | 65000USD |
 
-![꺠진 유리창](img.png)
+또한 환율도 명시해야 한다.
 
-**깨진 유리창 법칙**
+| 기준 | 변환 | 환율 |
+| --- | --- | --- |
+| CHF | USE | 1.5 |
 
-> 나쁜 코드는 깨진 유리창처럼
-계속 나쁜 코드가 만들어지도록 한다.
->
+ex)
+$5 + 10CHF = $10 (환율이 2:1일 경우)
+**$5 * 2 = $10**
+와 같은 결과가 나와야 한다.
 
-![생산성 저하](img_1.png)
+다중 통화 보고서가 제대로 계산됨을 확신하기 위해서는 다음과 같은 테스트 코드들이 있어야 할 것이다.
 
-**생산성 저하**
+- 통화가 다른 두 금액을 더해서 주어진 환율에 맞게 변한 금액을 결과로 얻을 수 있어야 한다.
+- 어떤 금액(주가)을 어떤 수(주식의 수)에 곱한 금액을 결과로 얻을 수 있어야 한다.
 
-> 나쁜 코드는 팀 생산성을 저하시킨다.
-기술부채를 만들어 수정을 더 어렵게 한다.
->
+첫 번째 항목은 복잡해 보이므로, 두 번째 항목 부터 다루어보도록 하자.
 
-![새로운 시스템을 만들어야 한다](img_2.png)
+우리는 TDD로 개발하고자 하므로, 어떠한 객체가 필요할지를 고민하는 것이 아니라, 가장 먼저 테스트를 작성해야 한다.
 
-**새로운 시스템을 만들어야 한다.**
-
-> 현시스템을 유지보수하며
-대처할 새로운 시스템 개발은 현실적으로 매우 어렵다.
->
-
-![일정이 촉박](img_3.png)
-
-**일정이 촉박해서**
-
-> 일정 안에 새로운 기능을 완성해야 한다.
-하지만..
-나쁜 코드는 생산성을 저하하기 때문에
-오히려 일정을 못맞춘다.
->
-
-![Side Effect](img_4.png)
-
-**영향 범위가 넓어서**
-
-> 생각보다 영향 범위가 넘어서 건드렸다가 다른 부분에 버그가 발생할까봐
-하지만..
-기술부채는 부메랑처럼 우리에게 돌아온다.
->
-
-## 클린 코드란?
-
-![비야네 스트롭스트룹](img_5.png)
-
-> “
-나는 우아하고 효율적인 코드를 좋아한다.<br>
-논리가 간단해야 버그가 숨어들지 못한다.<br>
-의존성을 최대한 줄여야 유지보수가 쉬워진다.<br>
-오류는 명백한 전략에 의거해 철저히 처리한다.<br>
-성능을 최적으로 유지해야 사람들이 원칙 없는 최적화로
-코드를 망치려는 유혹에 빠지지 않는다.<br>
-<span style="color:red">**깨끗한 코드는 한 가지를 제대로 한다.**</span>"<br>
-> _**비야네 스트롭스트룹**_
-
-![그래디 부치](img_6.png)
-
-> “
-깨끗한 코드는 단순하고 직접적이다.<br>
-<span style="color:red">**깨끗한 코드는 잘 쓴 문장처럼 읽힌다.**</span><br>
-깨끗한 코드는 결코 설계자의 의도를 숨기지 않는다.<br>
-오히려 명쾌한 추상화와 단순한 제어문으로 가득하다."<br>
-> _**그래디 부치**_
-
-
-**요약**
-
-
-💡 성능이 좋은 코드<br>
-💡 의미가 **명확한** 코드 = **가독성**이 좋은 코드<br>
-💡 **중복이 제거**된 코드<br>
-
-
-
-![보이스카우트 룰](img_7.png)
-
-### 보이스카우트 룰
-
-> **“전보다 더 깨끗한 코드를 만든다”**
->
-
-## 의미 있는 이름 짓기
-
-### 의미가 분명한 이름 짓기
-
-- **잘못된 예**
+가장 빨리 초록색 막대를 보기 위해 테스트 코드를 작성하면 다음과 같다.
+(물론 아래의 코드는 공용 필드(public field)와, 금액을 계산하는데 정수형을 사용하는 등의 문제가 있다. 하지만 TDD는 우선 작은 단계부터 시작할 뿐이고, 이런 문제들은 추후에 수정될 것이다.)
 
 ```java
-int a;
-String b;
-
-// ..
-
-System.out.printf("User Requested %s. count = %d", b, a);
-// Console Output
-// User Requested book count = 3
-
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   **$5 * 2 = $10**
+   amount를 private으로 만들기
+   Dollar 부작용(size effect)?
+   Money 반올림
 ```
 
 ```java
-int itemCount;
-String itemName;
-
-// ..
-
-System.out.printf("User Requested %s. count = %d", b, a);
-// Console Output
-// User Requested book count = 3
-
+public void testMultiplication() {
+    Dollar file = new Dollar(5);
+    five.times(2);
+    assertEquals(10, five.amount);
+} 
 ```
+
+위의 코드들은 다음과 같은 이유들로 컴파일 에러가 발생한다.
+
+- Dollar 클래스가 없음
+- 생성자가 없음
+- times(int) 메소드가 없음
+- amount 필드가 없음
+
+우리는 위와 같은 컴파일 에러들을 순차적으로 해결하기 위해 코드를 작성하다 보면, 다음과 같은 Dollar 클래스를 얻게 된다.
 
 ```java
-//클래스를 활용해서 더 명확하게 변신
-
-class SalesItem {
-	ItemCode code;
-	String name;
-	int count;
-	}
-	
-// ..
-SalesItem selectedItem = salesItemRepository.getItemByCode(purchaseRequest.getItemCode())
-System.out.printf("User Requested %s. count = %d", 
-										selectedItem.getName(), selectedItem.getName());
-
-// ConsoIe Output
-// User Requested book. count = 3
+// 클래스 생성
+public class Dollar {
+    // 필드 생성
+    int amount;
+    // 생성자
+    Dollar(int amount) {
+    }
+    //메서드 생성
+    void times(int multiplier) {
+    }
+}
 ```
 
-### 루프 속에 ijk 사용하지 않기
+이제 컴파일 에러를 해결하고 테스트를 실행하면 빨간 막대를 보게 된다. 그리고 이제 우리의 목표는 '다중 통화 구현'이 아닌 '이 테스트를 통과시킨 후 나머지 테스트들도 통과 시키기' 이다.
 
-배열을 순회할 때 index를 의미하는 i사용하지 않고 advanced for문으로 대체한 수 있다.
-
-![](img_10.png)
-
-자바 8에서는 **lamda**를 사용 할 수도 있다.
-
-![](img_9.png)
-
-최대한 의미를 찾을 수 있다.
-
-![](img_8.png)
-
-- i, j, k 대신 맥락에 맞는 이름이 있다.<br>
-- i, j -> row, col / width, height<br>
-- i, j, k -> row, col, depth<br>
-
-### 통일성 있는 단어 사용하기
-
-- Member / Customer / User <br>
-- Service / Manager <br>
-- Repository / Dao <br>
-
-### 변수명에 타입 넣지 않기
+가장 단순히 테스트를 통과시키는 방법은 amount를 10으로 설정해주는 것이다.
 
 ```java
-String nameString(👎) -> name
-lnt itemPriceAmount(👎) -> itemPrice
-
-Account[] accountArray(👎)-> accounts
-List<Account> accountList(👌) -> accounts, accountList
-Map<Account> accountMap(👌) => 대체 불가능해서 가능
-
-public interface IShapeFactory(👎) -> ShapeFactory
-public class ShapeFactoryImpl(👍) -> CircleFactory
+int amount = 10;
 ```
 
-## Google Java Naming Guide
+주기의 1번부터 4번 항복까지를 수행했다.
 
-[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html#s5-naming)
+1. 작은 테스트를 하나 추가한다.
+2. 모든 테스트를 실행해서 테스트가 실패하는 것을 확인한다.
+3. 코드를 조금 바꾼다.
+4. 모든 테스트를 실행하고, 전부 성공하는지 확인한다.
+5. 중복을 제거하기 위해 리팩토링을 한다.
 
-![](img_11.png)
-
-### Package Naming Guide
-
-- All lower case, no underscores
+이제 중복을 제거할 차례다. 현재는 중복이 안보일 수 있지만 10을 `int amount=5 * 2`로 바꾸면 중복이 보인다. (실제로도 풀어서 쓰는 것이 맞다.) 5와 2라는 데이터가 테스트 코드와 클래스에 중복이 되는 것이다. 이를 제거하기 위해서는 amount와 multiplier를 정해줘야 하는데, 생성자에서는 amount를 times에서는 multiplier를 파라미터로 받도록 하자. 중복제거를 통해 탄생하게 된 Dollar 클래스는 다음과 같다.
 
 ```java
-com.example.deepspace(👍)
-com.example.deepSpace(👎)
-com.example.deep_space(👎)
+public class Dollar {
+
+    int amount;
+
+    Dollar(int amount) {
+        this.amount = amount;
+    }
+
+    void times(int multiplier) {
+        this.amount *=multiplier;
+    }
+}
 ```
 
-### Class Naming Guide
+아직 할일이 끝난 것은 아니다. 여전히 남아 있다.
 
-- UpperCamelCase (대문자로 시작)
+누군가는 위의 단계가 너무 작다고 느낄 수 있다. 하지만 TDD의 핵심은 이런 작은 단계를 밟는 것이 아니라, 이런 작은 단계를 밟는 능력을 갖추어야 한다는 것이다. 물론 항상 이런식으로 작업을 할 필요는 없겠지만, 일이 꼬이기 시작한다면 이런 능력이 필요하게 될 것이다.
 
 ```java
-// 클래스는 명사. 명사구
-Character, ImmutableList
-
-// 인터페이스는 명사. 명사구. (형용사)
-List, Readable
-
-// 테스트클래스는 Test로 끝나기
-HashTest, HashIntegrationTest
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   Dollar 부작용(size effect)?
+   Money 반올림
 ```
 
-### Method Naming Guide
+이제 첫 번째 테스트에 완료 표시를 할 수 있게 됐다. 다음 장에서는 Dollar 부작용에 대한 작업을 하게 될 것이다. 그 전에 지금까지 한 작업을 검토해보자. 우리는 다음 작업들을 해냈다.
 
-- LowerCameICase (소문자로 시작)
+- 우리가 알고 있는 작업해야 할 테스트 목록을 만들었다.
+- 오퍼레이션이 외부에서 어떻게 보이길 원하는지 말해주는 이야기를 코드로 표현했다.
+- JUnit에 대한 상세한 사항들은 잠시 무시하기로 했다.
+- 스텁 구현을 통해 테스트를 컴파일했다.
+- 끔찍한 죄악을 범하여 테스트를 통과시켰다.
+- 돌아가는 코드에서 상수를 변수로 변경하여 점진적으로 일반화 했다.
+- 새로운 할일들을 한번에 처리하는 대신 할일 목록에 추가하고 넘어갔다.
+
+### **2. 타락한 객체**
+
+일반적인 TDD 주기는 다음과 같다.
+
+1. 테스트를 작성한다. 마음속에 있는 오퍼레이션이 코드에 어떤 식으로 나타나길 원하는지 생각해보고, 원하는 인터페이스를 개발하라. 올바른 답을 얻기 위해 필요한 이야기의 모든 요소를 포함 시켜라.
+2. 실행 가능하도록 만든다. 다른 무엇보다도 중요한 것은 빨리 초록 막대를 보는 것이다. 깔끔하고 단순한 해법이 보인다면 그것을 입력하라. 깔끔하고 단순한 해법이 명백히 보이지만 개발하는데 시간이 필요하다면, 일단 적어 놓은 뒤에 초록 막대부터 보도록 하자.
+3. 올바르게 만든다. 이제 시스템이 작동하도록 직전에 저질렀던 죄악들을 수습하자. 좁고 올곧은 소프트웨어 정의의 길로 되돌아와서 중복을 제거하고 초록 막대로 되돌아가자.
+
+TDD의 목적은 작동하는 깔끔한 코드를 얻는 것이다. 이는 때로 최고의 프로그래머들조차 도달하기 힘들고, 평범한 프로그래머들에게는 거의 불가능한 일이다. 그렇다면 우리는 나누어서 정복(divide and conquer)해야 한다. 우선 ‘작동하는 코드를 만들고’ 나서 깔끔한 코드를 만드는 것이다.
+작동하는 부분을 해결해 가면서 배운것들을 설계에 반영하느라 허둥거리는 아키텍처 주도 개발과 정반대다.
+
 ```java
-sendMessage, stop // 메서드는 동사, 동사구
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   **Dollar 부작용(size effect)?**
+   Money 반올림
 ```
+
+다시 다중 통화 예제로 돌아오면, 테스트를 하나 통과했지만 문제가 있다. 그것은 Dollar에 대한 연산 이후에, 해당 Dollar의 값이 바뀌는 점이다. 예를 들어 다음과 같은 테스트는 실패한다.
+
+```java
+public void testMultiplication() {
+    Dollar five = new Dollar(5);
+
+    five.times(2);
+    assertEquals(10, five.amount);
+
+    five.times(3);
+    assertEquals(15, five.amount);
+}
+```
+
+이 문제를 통과할 가장 간단한 방법으로 times에서 새로운 객체를 반환하도록 하는 것이 있다. 이러면 테스트 코드와 Dollar 클래스의 변경이 필요할 것이다. 물론 이러한 방법이 완벽하지 못할 수 있지만, 문제될 것은 없다. 테스트 코드를 먼저 수정하면 다음과 같다.
+
+```java
+public void testMultiplication() {
+    Dollar five = new Dollar(5);
+
+    Dollar product = five.times(2);
+    assertEquals(10, product.amount);
+
+    product = five.times(3);
+    assertEquals(15, product.amount);
+}
+```
+
+현재는 times에 반환값이 없기 때문에 컴파일조차 되지 않을 것이다. 우리는 컴파일 에러를 해결하기 위해 times에 우선 null을 반환하도록 할 수 있다.
+
+```java
+Dollar times(int multiplier) {
+    this.amount *= multiplier;
+    return null;
+}
+```
+
+이제 컴파일은 되지만 테스트는 실패할 것이다. 그리고 다음 단계로 실제 Dollar 객체를 생성해서 반환하도록 하자.
+
+```java
+Dollar times(int multiplier) {
+    return new Dollar(amount * multiplier);
+}
+```
+
+1장에서는 가짜 구현으로 시작해서 실제 구현을 만들었지만, 이번에는 올바른 구현이라고 생각한 내용을 입력한 후 테스트하였다. 이는 최대한 빨리 초록색을 보기 위한 두 가지 전략이다.
+
+- 가짜로 구현하기: 상수를 반환하게 만들고, 진짜 코드를 얻을 대 까지 단계적으로 상수를 변수로 바꾸어 간다.
+- 명백한 구현 사용하기: 실제 구현을 입력한다.
+
+실무에서 TDD를 사용할 때 모든 일이 자연스럽게 진행되고 명확할 때에는 명백한 구현을 계속 더해나가면 된다. 물론 명백한 구현을 하면서도 확신을 위해 테스트를 한 번씩 실행해야 한다. 그러다 빨간 막대가 보이면 가짜로 구현하기를 사용하여 올바른 코드로 리팩토링하면 된다.
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   ~~Dollar 부작용(size effect)?~~
+   Money 반올림
+```
+
+### **3. 모두를 위한 평등**
+
+앞서 Dollar처럼 객체를 값처럼 쓰는 패턴을 값 객체 패턴(Value Object pattern) 이라고 한다. VO의 제약사항 중 하나는 객체의 인스턴스 변수가 생성자를 통해 설정된 후에 변하지 않아야 한다는 것이다. 만약 누군가가 새로운 값을 지니는 Dollar 객체를 원한다면 새로 생성해주어야 한다. 또한 그럼에 따라 equals()와 hashCode() 함수 역시 구현해주어야 한다. 왜냐하면 5달러는 다른 5달러와 동등해야 하기 때문이다. 그렇기 때문에 우리의 할 일에 2가지 함수의 구현이 추가되었다.
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   **equals()**
+   hashCode()
+   
+```
+
+객체의 동치성에 대한 테스트 코드를 작성하면 다음과 같다.
+
+```java
+public void testEquality() {
+    assertTrue(new Dollar(5).equals(new Dollar(5)));
+}
+```
+
+이를 실행하면 빨간 막대가 보일 것이다.
+
+우선 가짜로 구현하기 방법을 통해 equals가 무조건 true를 반환하도록 구현해두자.
+
+```java
+public boolean equals(Object object) {
+    return true;
+}
+```
+
+그리고 이를 마무리하기 위해 세 번째 기법인 삼각측량 기법을 사용해보도록 하자. 삼각측량을 이용하려면 예제가 2개 이상 있어야만 코드를 일반화할 수 있다. 테스트 코드와 모델 코드 사이에 중복이 생기겠지만, 잠시 무시하고, 나중에 일반화하도록 하자. 예시($5≠$6)를 추가하면 다음과 같다.
+
+```java
+public void testEquality() {
+    assertTrue(new Dollar(5).equals(new Dollar(5)));
+    assertFalse(new Dollar(5).equals(new Dollar(6)));
+}
+```
+
+그리고 동치성을 일반화하여 equals를 다음과 같이 작성할 수 있다.
+
+```java
+public boolean equals(Object object) {
+		Dollar dollar = (Dollar) object
+    return amount == dollar.amount;
+}
+```
+
+이러면 이제 우리는 삼각측량 기법으로 equals를 재정의하는 일을 마무리 한 것이다. 앞서 times를 일반화할 때에도 삼각측량을 이용할 수 있었다. 5 * 2와 5 * 3이라는 테스트를 모두 가지고 있었다면, 상수를 반환하는 것 만으로는 테스트를 통과할 수 없었을 것이다.
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   ~~equals()~~
+   hashCode()
+   
+```
+
+이러한 삼각측량은 조금 이상한 면이 있기 때문에, 어떻게 리팩토링해야 하는지 감이 오지 않을때에만 이용하면 좋다. 코드와 테스트 사이의 중복을 제거하고, 일반적인 해법을 구할 방법이 보인다면 바로 그 방법대로 구현하는 것이 현명할 것이다. 하지만 설계를 어떻게 할 지 떠오르지 않을 때면, 삼각측량 기법은 조금 다른 방향에서 생각해볼 기회를 제공해 줄 것이다.
+
+동일성 문제 자체는 해결이 되었지만, 해당 객체가 null이거나, 다른 객체와 비교한다면 문제가 발생할 수 있다. 이러한 부분은 당장 필요하지는 않으므로 할일 목록에 추가해두도록 하자.
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   amount를 private으로 만들기
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   ~~equals()~~
+   hashCode()
+   Equal null
+   Equal Object
+```
+
+우리는
+
+- 우리의 디자인 패턴(값 객체)이 하나의 또 다른 오퍼레이션을 암시한다는 걸 알아챘다.
+- 해당 오퍼레이션을 테스트했다.
+- 해당 오퍼레이션을 간단히 구현했다.
+- 곧장 리팩토링하는 대신 테스트를 조금 더 했다.
+- 두 경우를 모두 수용 할 수 있도록 리팩토링했다.
+
+### **4. 프라이버시**
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+   **amount를 private으로 만들기**
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   ~~equals()~~
+   hashCode()
+   Equal null
+   Equal Object
+```
+
+동치성 문제를 해결했으므로 테스트가 더 많은 이야기를 하도록 해보자.
+
+개념적으로 Dollar.times() 연산은 호출 받은 객체의 값에 인자로 받은 곱수만큼 곱한 값을 갖는 Dollar를 반환 해야한다. 하지만 테스트가 정확히 그것을 말하지 않는다.
+
+```java
+public void testMultiplication() {
+    Dollar five = new Dollar(5);
+
+    Dollar product = five.times(2);
+    assertEquals(10, product.amount);
+
+    product = five.times(3);
+    assertEquals(15, product.amount);
+}
+```
+
+그렇기 때문에 기존의 테스트 코드를 객체를 비교하도록 재작성할 수 있다. 그리고 코드까지 정리하면 다음과 같은 테스트 코드를 얻게 된다.
+
+```java
+public void testMultiplication() {
+    Dollar five = new Dollar(5);
+    assertEquals(new Dollar(10), five.times(2));
+    assertEquals(new Dollar(15), five.times(3));
+}
+```
+
+이러한 테스트 코드는 우리의 의도를 더욱 명확하게 이야기해준다. 또한 이제 외부에서 amount를 접근하는 일이 없으므로, private으로 변경할 수 있다. 그리고 할 일은 또 한가지 줄었다.
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   ~~amount를 private으로 만들기~~
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   ~~equals()~~
+   hashCode()
+   Equal null
+   Equal Object
+```
+
+하지만 위험한 상황이 만들어지기는 하였다. 그것은 동치성 테스트가 동치성이 올바르게 동작함을 검증하지 못한다면, 곱하기 테스트 역시 실패하게 된다는 것이다. 이것은 TDD를 하면서 적극적으로 관리해야 할 위험 요소이다.
+
+물론 우리의 추론이 맞지 않아서 결함이 발생할 수 있다. 그럴 경우에는 어떻게 테스트를 작성했어야 하는가에 대해 교훈을 얻고 앞으로 나아가면 된다. 그 이후에는 용감하게 펄럵이는 초록 막대 아래서 대담하게 앞으로 나아갈 수 있다
+
+### **5. 솔직히 말하자면**
+
+```java
+할일 
+   $5 + 10CHF = $10 (환율이 2:1일 경우) 
+   ~~$5 * 2 = $10~~
+****   ~~amount를 private으로 만들기~~
+   ****~~Dollar 부작용(size effect)?~~
+   Money 반올림
+   ~~equals()~~
+   hashCode()
+   Equal null
+   Equal Object
+   **5USD * 2 = 10USD**
+```
+
+이제 할 일들 중에서 서로 다른 두 통화를 더하는 일에 대해 살펴보도록 하자.
+
+5USD + 10CHF = 10USD
+
+우선은 Dollar객체와 바슷하지만 달러 대신 프랑(Farnc)을 표현할 수 있는 객체가 필요한 것 같다. 만약 Dollar 객체와 비슷하게 작동하는 Fance이라는 객체를 만든다면 단위가 섞인 덧셈 테스트를 작성하고 돌려보는데 더 가까워질 것이다.
+
+그렇기에 먼저 Dollar 테스트를 복사한 후 수정해보자.
+
+```java
+public void testFrancMultiplication() {
+    Franc five = new Franc(5);
+    assertEquals(new Franc(10), five.times(2));
+    assertEquals(new Franc(15), five.times(3));
+}
+```
+
+이 전의 작업 내용 때문에 지금 작업이 상당히 쉬워졌다. 현재는 컴파일 오류가 발생하고 있는데, 이를 해결하기 위한 가장 직관적인 방법은 Dollar 클래스를 복사하여 Franc 클래스를 만드는 것이다. 1~4 단계를 진행할 때에는 속도보다 설계가 더 중요한 선택지이다. 속도를 위해서는 설계의 교리들을 어길 수 있다.
+
+1. 테스트 작성.
+2. 컴파일되게하기.
+3. 실패하는 확인하기 위해 실행.
+4. 실행하게 만듦.
+5. 중복 제거
+
+Franc 클래스를 만들었다면 중복이 엄청 많기 때문에 다음 테스트를 작성하기 전에 이를 제거해야 한다. 우선 equals를 일반화하는 작업Franc 클래스를 만들었다면 중복이 엄청 많기 때문에 다음 테스트를 작성하기 전에 이를 제거해야 한다. 우선 equals를 일반화하는 작업부터 진행하고자 한다.
