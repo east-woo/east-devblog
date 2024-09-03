@@ -1,5 +1,5 @@
 ---
-title: "[OS, Java]synchronized(feat. Monitor)"
+title: "[OS, Java] synchronized(feat. Monitor)"
 description: "어떻게 글을 작성하고 추가할까요?"
 date: 2024-07-31
 update: 2024-07-31
